@@ -38,5 +38,9 @@ public class SpelersDatabaseInMemory {
         return new ArrayList<Speler>(spelers.values());
     }
 
+    public Speler getSpelerMetSpelernaam(String spelerNaam) {
+        return spelers.get(spelerNaam);
+    }
+
 
 }

@@ -57,4 +57,14 @@ public class Speler {
     public double getSaldo() {
         return saldo;
     }
+
+    @Override
+    public String toString() {
+        return "Speler{" +
+                "achternaam='" + achternaam + '\'' +
+                ", voornaam='" + voornaam + '\'' +
+                ", spelernaam='" + spelernaam + '\'' +
+                ", saldo=" + saldo +
+                '}';
+    }
 }

@@ -13,8 +13,10 @@ import java.util.*;
 public class SpelersDatabaseInMemory {
 
     // hashmap met als key de spelernaam want die moet uniek zijn en als value de speler
-    Map<String, Speler> spelers = new HashMap<>();
+    public Map<String, Speler> spelers = new HashMap<>();
 
+    public SpelersDatabaseInMemory() {
+    }
 
     public void leesGegevensIn(String filePathName) {
         File spelersFile = new File(filePathName);
@@ -44,5 +46,10 @@ public class SpelersDatabaseInMemory {
         return spelers.get(spelerNaam);
     }
 
-
+    @Override
+    public String toString() {
+        return "SpelersDatabaseInMemory{" +
+                "spelers=" + spelers +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.database.SpelersDatabaseInMemory;
 import view.AdminView;
 import view.GamblerView;
 
@@ -10,9 +11,13 @@ public class GokSpelMain extends Application {
 	public void start(Stage primaryStage) {
 		AdminView adminView = new AdminView();
 		GamblerView gamblerView = new GamblerView();
+		SpelersDatabaseInMemory sdb = new SpelersDatabaseInMemory();
+		sdb.leesGegevensIn("src/bestanden/speler.txt");
+		System.out.println(sdb);
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 }

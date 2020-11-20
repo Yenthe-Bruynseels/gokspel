@@ -11,6 +11,7 @@ import java.util.*;
 
 
 public class SpelersDatabaseInMemory {
+
     // hashmap met als key de spelernaam want die moet uniek zijn en als value de speler
     Map<String, Speler> spelers = new HashMap<>();
 

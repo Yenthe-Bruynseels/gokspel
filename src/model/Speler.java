@@ -15,18 +15,30 @@ public class Speler {
     }
 
     public void setAchternaam(String achternaam) {
+        if(achternaam == null || achternaam.trim().isEmpty()) {
+            throw new DomainException("Achternaam mag niet leeg zijn");
+        }
         this.achternaam = achternaam;
     }
 
     public void setVoornaam(String voornaam) {
+        if(voornaam == null || voornaam.trim().isEmpty()) {
+            throw new DomainException("Voornaam mag niet leeg zijn");
+        }
         this.voornaam = voornaam;
     }
 
     public void setSpelernaam(String spelernaam) {
+        if(spelernaam == null || spelernaam.trim().isEmpty()) {
+            throw new DomainException("Spelernaam mag niet leeg zijn");
+        }
         this.spelernaam = spelernaam;
     }
 
     public void setSaldo(double saldo) {
+        if(saldo < 0) {
+            throw new DomainException("Saldo mag niet negatief zijn");
+        }
         this.saldo = saldo;
     }
 

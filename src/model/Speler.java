@@ -6,7 +6,9 @@ public class Speler {
     private String spelernaam;
     private double saldo;
 
-
+    public Speler() {
+        this("", "", "", 0.00);
+    }
     public Speler(String achternaam, String voornaam, String spelernaam, double saldo) {
         setAchternaam(achternaam);
         setVoornaam(voornaam);

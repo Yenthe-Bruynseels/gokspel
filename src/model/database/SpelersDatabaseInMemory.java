@@ -3,10 +3,8 @@ package model.database;
 import model.DomainException;
 import model.Speler;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Field;
 import java.util.*;
 
 

@@ -16,12 +16,12 @@ public class GokSpelMain extends Application {
 	public void start(Stage primaryStage) {
 		SpelersDatabaseInMemory sdb = new SpelersDatabaseInMemory();
 		sdb.leesGegevensIn("src/bestanden/speler.txt");
+		System.out.println("Main\t" + sdb);
 		List<Speler> spelers = sdb.getSpelers();
-
+		System.out.println("Main\t" + spelers);
 		AdminView adminView = new AdminView();
 		GamblerView gamblerView = new GamblerView();
 		GamblerOverviewPane view = new GamblerOverviewPane(sdb);
-		System.out.println(sdb);
 	}
 	
 	public static void main(String[] args) {

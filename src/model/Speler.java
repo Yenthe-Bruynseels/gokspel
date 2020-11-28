@@ -1,6 +1,6 @@
 package model;
 
-public class Speler {
+public class Speler implements Comparable<Speler>{
     private String achternaam;
     private String voornaam;
     private String spelernaam;
@@ -59,6 +59,9 @@ public class Speler {
     public double getSaldo() {
         return saldo;
     }
+    public String toStringWithGivenSeperator(String seperator) {
+        return achternaam + seperator + voornaam + seperator + spelernaam + seperator + saldo;
+    }
 
     @Override
     public String toString() {
@@ -68,5 +71,28 @@ public class Speler {
                 ", spelernaam='" + spelernaam + '\'' +
                 ", saldo=" + saldo +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Speler o) {
+        if(o == null) {
+            return 1;
+        }
+        if(getAchternaam().compareTo(o.getAchternaam()) != 0) {
+            return getAchternaam().compareTo(o.getAchternaam());
+        }
+        else{
+            if(getVoornaam().compareTo(o.getVoornaam()) != 0){
+                return getVoornaam().compareTo(o.getVoornaam());
+            }
+            else{
+                if(getSpelernaam().compareTo(o.getSpelernaam()) != 0){
+                    return getSpelernaam().compareTo(o.getSpelernaam());
+                }
+                else{
+                    return (int) (getSaldo() - o.getSaldo());
+                }
+            }
+        }
     }
 }

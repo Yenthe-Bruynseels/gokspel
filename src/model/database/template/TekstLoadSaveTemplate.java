@@ -2,17 +2,16 @@ package model.database.template;
 import model.DomainException;
 import model.Speler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-
-import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class TekstLoadSaveTemplate <K,V> {
+
+    abstract String getSeperator();
+
 
     public final Map<K, V> load(File file) throws IOException{
         Map<K, V> returnMap = new HashMap<K, V>();
@@ -22,16 +21,33 @@ public abstract class TekstLoadSaveTemplate <K,V> {
             while (scannerFile.hasNextLine()) {
                 String s = scannerFile.nextLine();
                 String[] parts = s.split(",");
-                String achternaam = parts[0];
-                String voornaam = parts[1];
-                String spelernaam = parts[2];
-                double saldo = Double.parseDouble(parts[3]);
-                Speler speler = new Speler(achternaam, voornaam, spelernaam, saldo);
-                returnMap.put(spelernaam, speler);
+                V element = maakObject(parts);
+                K key = getKey(parts);
+
+                returnMap.put(key,element);
             }
         } catch (FileNotFoundException e) {
             throw new DomainException("Fout bij het inlezen", e);
         }
         return returnMap;
     }
+
+    public final void save(String filename, List<Speler> spelers) {
+        File spelersInFile = new File(filename);
+        try {
+            PrintWriter writer = new PrintWriter(spelersInFile);
+            for(Speler s: spelers){
+                writer.println(s.toStringWithGivenSeperator(getSeperator()));
+            }
+            writer.close();
+        }
+        catch (FileNotFoundException e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    protected abstract K getKey(String[] parts);
+
+
+    protected abstract V maakObject(String[] parts);
 }

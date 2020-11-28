@@ -1,11 +1,14 @@
 package model.database;
 
-import model.DomainException;
 import model.Speler;
+import model.database.template.SpelerTekstReaderWriter;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
 
 
 public class SpelersDatabaseInMemory {
@@ -16,23 +19,14 @@ public class SpelersDatabaseInMemory {
     public SpelersDatabaseInMemory() {
     }
 
-    public void leesGegevensIn(String filePathName) {
+    public Map<String, Speler> leesGegevensIn(String filePathName) {
+        SpelerTekstReaderWriter spelerTekstReaderWriter = new SpelerTekstReaderWriter();
         File spelersFile = new File(filePathName);
         try {
-            Scanner scannerFile = new Scanner(spelersFile);
-
-            while (scannerFile.hasNextLine()) {
-                String s = scannerFile.nextLine();
-                String[] parts = s.split(",");
-                String achternaam = parts[0];
-                String voornaam = parts[1];
-                String spelernaam = parts[2];
-                double saldo = Double.parseDouble(parts[3]);
-                Speler speler = new Speler(achternaam, voornaam, spelernaam, saldo);
-                spelers.put(spelernaam, speler);
-            }
-        } catch (FileNotFoundException e) {
-            throw new DomainException("Fout bij het inlezen", e);
+            spelers = spelerTekstReaderWriter.load(spelersFile);
+            return spelers;
+        } catch (IOException e) {
+            throw new Dbexception("Er ging iets mis bij het inlezen van de file.");
         }
     }
 

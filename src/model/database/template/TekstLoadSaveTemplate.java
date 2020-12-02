@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public abstract class TekstLoadSaveTemplate <K,V> {
 
-    abstract String getSeperator();
+    protected abstract String getSeperator();
 
 
     public final Map<K, V> load(File file) throws IOException{

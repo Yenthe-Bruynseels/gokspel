@@ -1,7 +1,6 @@
 package model.database;
 
 import model.Speler;
-import model.database.template.SpelerTekstReaderWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -6,15 +6,15 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.database.SpelersDatabaseInMemory;
 import view.panels.GamblerOverviewPane;
+import model.Gokspel;
 
 public class AdminMainPane extends BorderPane {
-    private SpelersDatabaseInMemory sdbs;
 
 
-	public AdminMainPane(){		
+	public AdminMainPane(Gokspel gokspel){
 	    TabPane tabPane = new TabPane(); 	    
         Tab spelVerloopTab = new Tab("Spelverloop");
-        GamblerOverviewPane gamblerOverviewPane = new GamblerOverviewPane(sdbs);
+        GamblerOverviewPane gamblerOverviewPane = new GamblerOverviewPane(gokspel);
         Tab spelerTab = new Tab("Spelers",gamblerOverviewPane);
         Tab instellingTab = new Tab("Instellingen");
         Tab statistiekTab = new Tab("Statistieken");

@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import model.Gokspel;
 import model.Speler;
 import model.database.SpelersDatabaseInMemory;
 
@@ -17,18 +18,15 @@ import java.util.List;
 
 public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;
-    private SpelersDatabaseInMemory sdbs;
     private ObservableList<Speler> spelers;
-    private final String pathTxtFile = "src/bestanden/speler.txt";
 
-    public GamblerOverviewPane(SpelersDatabaseInMemory sdbs) {
-        this.sdbs = sdbs;
+    public GamblerOverviewPane(Gokspel gokspel) {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
         this.add(new Label("Spelers:"), 0, 0, 1, 1);
         table = new TableView<Speler>();
-        refresh();
+        refresh(gokspel);
         TableColumn<Speler, String> colSpelernaam = new TableColumn<Speler, String>("Spelernaam");
         colSpelernaam.setMinWidth(125);
         colSpelernaam.setCellValueFactory(new PropertyValueFactory<Speler, String>("spelernaam"));
@@ -47,11 +45,8 @@ public class GamblerOverviewPane extends GridPane {
         this.getChildren().add(table);
     }
 
-    private void refresh() {
-        SpelersDatabaseInMemory sdbs = new SpelersDatabaseInMemory();
-        sdbs.leesGegevensIn(pathTxtFile);
-        List<Speler> sp = sdbs.getSpelers();
-        spelers = FXCollections.observableArrayList(sp);
+    private void refresh(Gokspel gokspel) {
+        spelers = FXCollections.observableArrayList(gokspel.getSpelers());
         table.setItems(spelers);
         table.refresh();
 

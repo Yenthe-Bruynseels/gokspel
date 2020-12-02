@@ -3,12 +3,13 @@ package view;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;	
+import javafx.stage.StageStyle;
+import model.Gokspel;
 
 public class GamblerView {
 	private Stage stage = new Stage();		
 		
-	public GamblerView(){			
+	public GamblerView(Gokspel gokspel){
 		stage.setTitle("GAMBLER VIEW");
 		stage.initStyle(StageStyle.UTILITY);
 		stage.setX(20);

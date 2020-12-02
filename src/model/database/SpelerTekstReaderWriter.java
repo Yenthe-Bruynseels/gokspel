@@ -15,6 +15,12 @@ public class SpelerTekstReaderWriter extends TekstLoadSaveTemplate {
     }
 
     @Override
+    protected String makeStringFromValue(Object value) {
+        Speler speler = (Speler) value;
+        return speler.getAchternaam() + "," + speler.getVoornaam() + "," + speler.getSpelernaam() + "," + speler.getSaldo();
+    }
+
+    @Override
     protected Object maakObject(String[] parts) {
         return new Speler(parts[0], parts[1], parts[2], Double.parseDouble(parts[3]));
     }

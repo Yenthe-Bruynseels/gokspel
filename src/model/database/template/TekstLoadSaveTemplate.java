@@ -20,7 +20,7 @@ public abstract class TekstLoadSaveTemplate <K,V> {
 
             while (scannerFile.hasNextLine()) {
                 String s = scannerFile.nextLine();
-                String[] parts = s.split(",");
+                String[] parts = s.split(getSeperator());
                 V element = maakObject(parts);
                 K key = getKey(parts);
 
@@ -32,12 +32,13 @@ public abstract class TekstLoadSaveTemplate <K,V> {
         return returnMap;
     }
 
-    public final void save(String filename, List<Speler> spelers) {
+    public final void save(String filename, List valuelist) {
         File spelersInFile = new File(filename);
         try {
             PrintWriter writer = new PrintWriter(spelersInFile);
-            for(Speler s: spelers){
-                writer.println(s.toStringWithGivenSeperator(getSeperator()));
+
+            for(Object value: valuelist){
+                writer.println(makeStringFromValue(value));
             }
             writer.close();
         }
@@ -46,8 +47,10 @@ public abstract class TekstLoadSaveTemplate <K,V> {
         }
     }
 
+    protected abstract V maakObject(String[] parts);
+
     protected abstract K getKey(String[] parts);
 
+    protected abstract String makeStringFromValue(Object value);
 
-    protected abstract V maakObject(String[] parts);
 }

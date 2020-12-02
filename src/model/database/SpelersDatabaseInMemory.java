@@ -3,10 +3,7 @@ package model.database;
 import model.Speler;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.io.File;
 
 
@@ -18,19 +15,22 @@ public class SpelersDatabaseInMemory {
     public SpelersDatabaseInMemory() {
     }
 
-    public Map<String, Speler> leesGegevensIn(String filePathName) {
-        SpelerTekstReaderWriter spelerTekstReaderWriter = new SpelerTekstReaderWriter();
-        File spelersFile = new File(filePathName);
+    public void leesGegevensIn(File filename) {
         try {
-            spelers = spelerTekstReaderWriter.load(spelersFile);
-            return spelers;
+            spelers = new SpelerTekstReaderWriter().load(filename);
         } catch (IOException e) {
             throw new Dbexception("Er ging iets mis bij het inlezen van de file.");
         }
     }
 
+    public Map<String, Speler> getSpelersInMap() {
+        return spelers;
+    }
+
     public List<Speler> getSpelers() {
-        return new ArrayList<Speler>(spelers.values());
+        List<Speler> spelers = new ArrayList<Speler>(getSpelersInMap().values());
+        Collections.sort(spelers);
+        return spelers;
     }
 
     public Speler getSpelerMetSpelernaam(String spelerNaam) {

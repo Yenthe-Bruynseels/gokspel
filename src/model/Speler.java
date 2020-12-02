@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Speler implements Comparable<Speler>{
     private String achternaam;
     private String voornaam;
@@ -9,6 +11,7 @@ public class Speler implements Comparable<Speler>{
     public Speler() {
         this("", "", "", 0.00);
     }
+
     public Speler(String achternaam, String voornaam, String spelernaam, double saldo) {
         setAchternaam(achternaam);
         setVoornaam(voornaam);
@@ -75,24 +78,12 @@ public class Speler implements Comparable<Speler>{
 
     @Override
     public int compareTo(Speler o) {
-        if(o == null) {
-            return 1;
-        }
-        if(getAchternaam().compareTo(o.getAchternaam()) != 0) {
-            return getAchternaam().compareTo(o.getAchternaam());
-        }
-        else{
-            if(getVoornaam().compareTo(o.getVoornaam()) != 0){
-                return getVoornaam().compareTo(o.getVoornaam());
-            }
-            else{
-                if(getSpelernaam().compareTo(o.getSpelernaam()) != 0){
-                    return getSpelernaam().compareTo(o.getSpelernaam());
-                }
-                else{
-                    return (int) (getSaldo() - o.getSaldo());
-                }
-            }
-        }
+        return getSpelernaam().compareTo(o.getSpelernaam());
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSpelernaam());
     }
 }

@@ -14,8 +14,8 @@ public class Gokspel {
         return  spelersDb.getSpelers();
     }
 
-    public void leesGegevensIn(File filename) {
-        spelersDb.leesGegevensIn(filename);
+    public void leesGegevensIn(File file) {
+        spelersDb.leesGegevensIn(file);
     }
 
 }

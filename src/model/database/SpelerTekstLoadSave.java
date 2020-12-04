@@ -1,9 +1,17 @@
 package model.database;
 
+import model.DomainException;
 import model.Speler;
 import model.database.template.TekstLoadSaveTemplate;
 
-public class SpelerTekstReaderWriter extends TekstLoadSaveTemplate {
+import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class SpelerTekstLoadSave extends TekstLoadSaveTemplate {
+
     @Override
     protected String getSeperator() {
         return ",";

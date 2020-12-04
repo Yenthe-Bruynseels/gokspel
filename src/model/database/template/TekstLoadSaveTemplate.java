@@ -1,6 +1,7 @@
 package model.database.template;
 import model.DomainException;
 import model.Speler;
+import model.database.strategy.LoadSaveStrategy;
 
 import java.io.*;
 import java.util.HashMap;
@@ -8,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public abstract class TekstLoadSaveTemplate <K,V> {
+public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
 
     protected abstract String getSeperator();
 
-
-    public final Map<K, V> load(File file) throws IOException{
+    @Override
+    public final Map<K, V> load(File file){
         Map<K, V> returnMap = new HashMap<K, V>();
         try {
             Scanner scannerFile = new Scanner(new FileReader(file));
@@ -32,6 +33,7 @@ public abstract class TekstLoadSaveTemplate <K,V> {
         return returnMap;
     }
 
+    @Override
     public final void save(String filename, List valuelist) {
         File spelersInFile = new File(filename);
         try {

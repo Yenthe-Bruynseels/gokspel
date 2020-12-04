@@ -2,9 +2,8 @@ package model.database;
 
 import model.Speler;
 
-import java.io.IOException;
-import java.util.*;
 import java.io.File;
+import java.util.*;
 
 
 public class SpelersDatabaseInMemory {
@@ -15,12 +14,8 @@ public class SpelersDatabaseInMemory {
     public SpelersDatabaseInMemory() {
     }
 
-    public void leesGegevensIn(File filename) {
-        try {
-            spelers = new SpelerTekstReaderWriter().load(filename);
-        } catch (IOException e) {
-            throw new Dbexception("Er ging iets mis bij het inlezen van de file.");
-        }
+    public void leesGegevensIn(File file) {
+            spelers = new SpelerTekstLoadSave().load(file);
     }
 
     public Map<String, Speler> getSpelersInMap() {

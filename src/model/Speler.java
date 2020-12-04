@@ -83,6 +83,18 @@ public class Speler implements Comparable<Speler>{
 
 
     @Override
+    public boolean equals (Object o) {
+        boolean result = false;
+        if (o instanceof Speler) {
+            Speler s = (Speler) o;
+            if (this.spelernaam.equals(s.spelernaam)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(getSpelernaam());
     }

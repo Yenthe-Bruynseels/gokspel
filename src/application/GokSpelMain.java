@@ -19,7 +19,7 @@ public class GokSpelMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		gokspel.leesGegevensIn(textfile);
+		gokspel.getSpelers();
 		AdminView adminView = new AdminView(gokspel);
 		GamblerView gamblerView = new GamblerView(gokspel);
 		GamblerOverviewPane view = new GamblerOverviewPane(gokspel);

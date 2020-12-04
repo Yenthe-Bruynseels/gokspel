@@ -20,11 +20,11 @@ public class ExcelAdapter implements LoadSaveStrategy {
     }
 
     @Override
-    public Map load(File file) {
+    public Map load(String filename) {
         Map<String, Speler> spelers = new HashMap<>();
 
         try{
-            List<ArrayList<String>> excelLijst = excelPlugin.read(file);
+            List<ArrayList<String>> excelLijst = excelPlugin.read(convertToFile(filename));
             for(List<String> spelerParameters : excelLijst){
                 String lastname = spelerParameters.get(0);
                 String firstname = spelerParameters.get(1);
@@ -42,5 +42,9 @@ public class ExcelAdapter implements LoadSaveStrategy {
     @Override
     public void save(String filename, List spelers) {
         // Later.
+    }
+
+    private File convertToFile (String filename) {
+        return new File("src/bestanden/" + filename);
     }
 }

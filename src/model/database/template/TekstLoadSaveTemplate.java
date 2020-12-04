@@ -14,10 +14,10 @@ public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
     protected abstract String getSeperator();
 
     @Override
-    public final Map<K, V> load(File file){
+    public final Map<K, V> load(String filename){
         Map<K, V> returnMap = new HashMap<K, V>();
         try {
-            Scanner scannerFile = new Scanner(new FileReader(file));
+            Scanner scannerFile = new Scanner(new FileReader("src/bestanden/" + filename));
 
             while (scannerFile.hasNextLine()) {
                 String s = scannerFile.nextLine();
@@ -54,5 +54,9 @@ public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
     protected abstract K getKey(String[] parts);
 
     protected abstract String makeStringFromValue(Object value);
+
+    /*private File convertToFile (String filename) {
+        return new File("src/bestanden/" + filename);
+    }*/
 
 }

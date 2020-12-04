@@ -1,41 +1,42 @@
 package model.database;
 
 import model.Speler;
+import model.database.factory.LoadSaveFactory;
+import model.database.strategy.LoadSaveStrategy;
 
 import java.io.File;
 import java.util.*;
 
 
 public class SpelersDatabaseInMemory {
+    private LoadSaveStrategy loadSaveStrategy;
 
-    // hashmap met als key de spelernaam want die moet uniek zijn en als value de speler
-    public Map<String, Speler> spelers = new HashMap<>();
 
     public SpelersDatabaseInMemory() {
+        String database = PropertiesLoadSave.load("DATABASE");
+        LoadSaveFactory factory = LoadSaveFactory.getInstance();
+        LoadSaveStrategy strategy = factory.getStrategy(database);
+        setLoadSaveStrategy(strategy);
     }
 
-    public void leesGegevensIn(File file) {
-            spelers = new SpelerTekstLoadSave().load(file);
+    private void setLoadSaveStrategy(LoadSaveStrategy strategy) {
+        this.loadSaveStrategy = strategy;
     }
 
-    public Map<String, Speler> getSpelersInMap() {
-        return spelers;
+    public Map<String, Speler> getAll(String filename) {
+        return loadSaveStrategy.load(filename);
     }
 
-    public List<Speler> getSpelers() {
+    public void saveAll(String filename, Map<String, Speler> spelers) {
+        //
+    }
+
+
+    /*public List<Speler> getSpelers() {
         List<Speler> spelers = new ArrayList<Speler>(getSpelersInMap().values());
         Collections.sort(spelers);
         return spelers;
-    }
+    }*/
 
-    public Speler getSpelerMetSpelernaam(String spelerNaam) {
-        return spelers.get(spelerNaam);
-    }
 
-    @Override
-    public String toString() {
-        return "SpelersDatabaseInMemory{" +
-                "spelers=" + spelers +
-                '}';
-    }
 }

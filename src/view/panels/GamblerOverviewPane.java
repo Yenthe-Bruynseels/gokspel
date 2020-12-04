@@ -18,7 +18,6 @@ import java.util.List;
 
 public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;
-    private ObservableList<Speler> spelers;
 
     public GamblerOverviewPane(Gokspel gokspel) {
         this.setPadding(new Insets(5, 5, 5, 5));
@@ -26,7 +25,6 @@ public class GamblerOverviewPane extends GridPane {
         this.setHgap(5);
         this.add(new Label("Spelers:"), 0, 0, 1, 1);
         table = new TableView<Speler>();
-        refresh(gokspel);
         TableColumn<Speler, String> colSpelernaam = new TableColumn<Speler, String>("Spelernaam");
         colSpelernaam.setMinWidth(125);
         colSpelernaam.setCellValueFactory(new PropertyValueFactory<Speler, String>("spelernaam"));
@@ -40,16 +38,15 @@ public class GamblerOverviewPane extends GridPane {
         colSaldo.setMinWidth(125);
         colSaldo.setCellValueFactory(new PropertyValueFactory<Speler, Double>("saldo"));
         table.getColumns().addAll(colSpelernaam, colAchternaam, colVoornaam, colSaldo);
+        table.getItems().addAll(gokspel.getSpelers().values());
+        table.getSortOrder().add(colSpelernaam);
 
 
         this.getChildren().add(table);
     }
 
-    private void refresh(Gokspel gokspel) {
-        spelers = FXCollections.observableArrayList(gokspel.getSpelers());
-        table.setItems(spelers);
-        table.refresh();
-
+    private void refresh() {
+        //
     }
 
 

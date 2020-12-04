@@ -26,6 +26,15 @@ public class Gokspel {
         return spelers;
     }
 
+    public boolean checkBestaat(String prop) {
+       return  PropertiesLoadSave.propertyBestaat(prop);
+    }
+
+    public String loadProperty(String prop){
+        return PropertiesLoadSave.load(prop);
+    }
+
+
 /*    public List<Speler> getSpelers() {
         return  spelersDb.getSpelers();
     }

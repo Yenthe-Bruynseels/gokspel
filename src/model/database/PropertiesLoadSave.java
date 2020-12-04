@@ -19,8 +19,16 @@ public class PropertiesLoadSave {
         }
         return database;
     }
+    public static boolean propertyBestaat(String prop) {
+        return !PropertiesLoadSave.load(prop).equals("");
+    }
 
-
+    public static void save(String choice, String property) {
+        try{
+            FileInputStream fileInputStream = new FileInputStream("src/bestanden/settings.properties");
+            Properties properties = new Properties();
+            properties.load(fileInputStream);
+            fileInputStream.close();
 
 
 

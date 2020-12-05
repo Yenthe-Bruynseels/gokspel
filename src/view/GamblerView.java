@@ -1,7 +1,7 @@
 package view;
 
-import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Gokspel;
@@ -14,8 +14,17 @@ public class GamblerView {
 		stage.initStyle(StageStyle.UTILITY);
 		stage.setX(20);
 		stage.setY(20);
-		Group root = new Group();
-		Scene scene = new Scene(root, 600, 600);			
+		GridPane rootPane = new GridPane();
+		Scene scene = new Scene(rootPane, 900, 600);
+		GridPane gridPane = new GamblerTopPane(gokspel);
+		GridPane gridPane2 = new GamblerMiddlePane(gokspel);
+		gridPane2.setStyle("-fx-border-color: black");
+		gridPane2.setStyle("-fx-border-width: 1");
+		gridPane2.setStyle("-fx-border-style: solid");
+		gridPane.prefWidthProperty().bind(scene.widthProperty());
+		rootPane.setConstraints(gridPane, 0,0);
+		rootPane.setConstraints(gridPane2,0,1);
+		rootPane.getChildren().addAll(gridPane, gridPane2);
 		stage.setScene(scene);
 		stage.sizeToScene();			
 		stage.show();		

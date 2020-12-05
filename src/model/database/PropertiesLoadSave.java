@@ -1,5 +1,7 @@
 package model.database;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -24,24 +26,19 @@ public class PropertiesLoadSave {
     }
 
     public static void save(String choice, String property) {
-        try{
+        try {
             FileInputStream fileInputStream = new FileInputStream("src/bestanden/settings.properties");
             Properties properties = new Properties();
             properties.load(fileInputStream);
             fileInputStream.close();
 
+            FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/settings.properties");
+            properties.setProperty(property, choice);
+            properties.store(fileOutputStream, null);
+            fileOutputStream.close();
 
-
-    //Schrijft de value met waarde 'keuze' weg naar de property met waarde 'property'
-    public static void save(String keuze, String property) {
-        //
+        }catch (Exception e){
+            throw new DbException("Probleem bij het opslaan.");
+        }
     }
-
-
-
-
-
-
-
-
 }

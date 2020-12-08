@@ -26,6 +26,11 @@ public class Gokspel {
         spelers.putAll(this.db.getAll("speler." + PropertiesLoadSave.load("DATABASE")));
     }
 
+    public Speler vindSpeler(String spelernaam) {
+        if(spelernaam == null || spelernaam.trim().isEmpty()) throw new DomainException("Je geeft een lege spelernaam mee.");
+        return spelers.get(spelernaam);
+    }
+
     private void setDb( SpelersDatabaseInMemory db) {
         this.db = db;
     }

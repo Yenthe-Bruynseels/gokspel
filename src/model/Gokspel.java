@@ -1,5 +1,8 @@
 package model;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
 import model.observer.Observer;
@@ -37,6 +40,10 @@ public class Gokspel {
 
     public Map<String, Speler> getSpelers() {
         return spelers;
+    }
+
+    public ObservableList<Speler> getSpelersObserve(){
+        return FXCollections.observableArrayList(getSpelers().values());
     }
 
     public boolean checkBestaat(String prop) {

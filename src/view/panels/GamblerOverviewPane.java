@@ -38,7 +38,7 @@ public class GamblerOverviewPane extends GridPane {
         colSaldo.setMinWidth(125);
         colSaldo.setCellValueFactory(new PropertyValueFactory<Speler, Double>("saldo"));
         table.getColumns().addAll(colSpelernaam, colAchternaam, colVoornaam, colSaldo);
-        table.getItems().addAll(gokspel.getSpelers().values());
+        table.getItems().addAll(gokspel.getSpelersObserve());
         table.getSortOrder().add(colSpelernaam);
 
 

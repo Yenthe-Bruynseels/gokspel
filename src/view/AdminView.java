@@ -13,7 +13,7 @@ public class AdminView {
 	public AdminView(Gokspel gokspel){
 		stage.setTitle("ADMIN VIEW");
 		stage.initStyle(StageStyle.UTILITY);
-		stage.setX(630);
+		stage.setX(930);
 		stage.setY(20);
 		Group root = new Group();
 		Scene scene = new Scene(root, 600, 600);

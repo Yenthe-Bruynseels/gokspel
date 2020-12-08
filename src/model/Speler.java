@@ -62,6 +62,7 @@ public class Speler implements Comparable<Speler>{
     public double getSaldo() {
         return saldo;
     }
+
     public String toStringWithGivenSeperator(String seperator) {
         return achternaam + seperator + voornaam + seperator + spelernaam + seperator + saldo;
     }

@@ -18,10 +18,8 @@ public class GamblerView {
 		Scene scene = new Scene(rootPane, 900, 600);
 		GridPane gridPane = new GamblerTopPane(gokspel);
 		GridPane gridPane2 = new GamblerMiddlePane(gokspel);
-		gridPane2.setStyle("-fx-border-color: black");
-		gridPane2.setStyle("-fx-border-width: 1");
-		gridPane2.setStyle("-fx-border-style: solid");
 		gridPane.prefWidthProperty().bind(scene.widthProperty());
+		gridPane2.prefWidthProperty().bind(scene.widthProperty());
 		rootPane.setConstraints(gridPane, 0,0);
 		rootPane.setConstraints(gridPane2,0,1);
 		rootPane.getChildren().addAll(gridPane, gridPane2);

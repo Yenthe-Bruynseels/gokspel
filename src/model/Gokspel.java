@@ -2,15 +2,23 @@ package model;
 
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
+import model.observer.Observer;
+import model.observer.Subject;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class Gokspel {
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
+    private Speler huidigeSpeler;
+    private List<Observer> observers = new ArrayList<Observer>();
+
+
 
     public Gokspel(){
         setDb(new SpelersDatabaseInMemory());
@@ -34,13 +42,23 @@ public class Gokspel {
         return PropertiesLoadSave.load(prop);
     }
 
-
-/*    public List<Speler> getSpelers() {
-        return  spelersDb.getSpelers();
+    public Speler getHuidigeSpeler() {
+        return huidigeSpeler;
     }
 
-    public void leesGegevensIn(File file) {
-        spelersDb.leesGegevensIn(file);
-    }*/
+    public void setHuidigeSpeler(Speler huidigeSpeler) {
+        this.huidigeSpeler = huidigeSpeler;
+    }
 
+    /*@Override
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(getSpelersObserve(), getHuidigeSpeler().getSaldo());
+        }
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        this.observers.add(observer);
+    }*/
 }

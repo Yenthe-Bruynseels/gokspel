@@ -19,6 +19,10 @@ public class SpelverloopController implements Observer {
 
     }
 
+    public void setView(SpelverloopPane view){
+        this.view = view;
+    }
+
 
     private void setModel(Gokspel gokspel){
         this.gokspel = gokspel;

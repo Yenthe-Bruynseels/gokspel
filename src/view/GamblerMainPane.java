@@ -83,8 +83,6 @@ public class GamblerMainPane extends GridPane {
         goksaldo.setVisible(false);
         startGokspel.setVisible(false);
 
-
-
         spelernaamTextField.setOnMouseClicked(event -> {
             spelernaamTextField.clear();
         });
@@ -131,7 +129,6 @@ public class GamblerMainPane extends GridPane {
         startGokspel.setOnMouseClicked(event -> {
             System.out.println("wollah goe gerold G");
         });
-
     }
     private void setController(GamblerViewController gambie) {
         this.gambie = gambie;

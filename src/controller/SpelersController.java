@@ -16,7 +16,7 @@ public class SpelersController implements Observer {
     }
 
     @Override
-    public void update(ObservableList<Speler> spelers, double saldo) {
+    public void update(String spelernaam, double saldo) {
 
     }
 

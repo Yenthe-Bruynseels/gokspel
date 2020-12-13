@@ -15,11 +15,9 @@ public class StatistiekenController implements Observer {
     }
 
     @Override
-    public void update(ObservableList<Speler> spelers, double saldo) {
-        setModel(gokspel);
+    public void update(String spelernaam, double saldo) {
+
     }
-
-
 
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;

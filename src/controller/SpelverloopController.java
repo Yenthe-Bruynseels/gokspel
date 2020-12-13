@@ -15,9 +15,11 @@ public class SpelverloopController implements Observer {
     }
 
     @Override
-    public void update(ObservableList<Speler> spelers, double saldo) {
-
+    public void update(String spelernaam, double saldo) {
+        //view.update(huidigeSpeler.getSpelernaam(), huidigeSpeler.getSaldo());
+        view.update(spelernaam, saldo);
     }
+
 
     public void setView(SpelverloopPane view){
         this.view = view;
@@ -27,4 +29,5 @@ public class SpelverloopController implements Observer {
     private void setModel(Gokspel gokspel){
         this.gokspel = gokspel;
     }
+
 }

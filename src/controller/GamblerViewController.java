@@ -5,7 +5,7 @@ import model.Gokspel;
 import model.Speler;
 import model.observer.Observer;
 import view.GamblerMainPane;
-import view.GamblerView;
+
 
 public class GamblerViewController implements Observer {
     private GamblerMainPane view;
@@ -17,7 +17,7 @@ public class GamblerViewController implements Observer {
 
 
     @Override
-    public void update(ObservableList<Speler> spelers, double saldo) {
+    public void update(String spelernaam, double saldo) {
 
     }
 
@@ -39,5 +39,9 @@ public class GamblerViewController implements Observer {
 
     public Speler getHuidigeSpeler() {
         return gokspel.getHuidigeSpeler();
+    }
+
+    public void setIngezetBedrag(double saldo) {
+        gokspel.setIngezetBedrag(saldo);
     }
 }

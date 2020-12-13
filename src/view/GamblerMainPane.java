@@ -2,15 +2,11 @@ package view;
 
 import controller.GamblerViewController;
 import javafx.geometry.Insets;
-
-import javafx.scene.Group;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import model.Gokspel;
+
 import model.Speler;
 
 
@@ -106,7 +102,6 @@ public class GamblerMainPane extends GridPane {
                     goksaldo.requestFocus();
                 }
                 gambie.setHuidigeSpeler(speler);
-               /* gokspel.notifyObservers();*/
                 spelernaamTextField.clear();
             }
         });
@@ -114,13 +109,15 @@ public class GamblerMainPane extends GridPane {
         goksaldo.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 double maxSaldo = gambie.getHuidigeSpeler().getSaldo();
-                if (maxSaldo < Double.parseDouble(goksaldo.getText())) {
+                double ingezetBedrag = Double.parseDouble(goksaldo.getText());
+                if (maxSaldo < ingezetBedrag) {
                     Alert saldoOntoereikend = new Alert(Alert.AlertType.ERROR);
                     saldoOntoereikend.setTitle("Saldo ontoereikend");
                     saldoOntoereikend.setHeaderText("Saldo ontoereikend");
                     saldoOntoereikend.setContentText("Het ingegeven bedrag is hoger dan je beschikbare saldo.");
                     saldoOntoereikend.showAndWait();
                 } else {
+                    gambie.setIngezetBedrag(ingezetBedrag);
                     startGokspel.setVisible(true);
                 }
             }

@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface Observer {
-    void update(ObservableList<Speler> spelers, double saldo);
+    void update(String spelernaam, double saldo);
 }

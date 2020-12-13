@@ -14,6 +14,7 @@ public class Gokspel implements Subject {
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
     private Speler huidigeSpeler;
+    private double ingezetBedrag;
     private List<Observer> observers = new ArrayList<Observer>();
 
 
@@ -56,10 +57,19 @@ public class Gokspel implements Subject {
         this.huidigeSpeler = huidigeSpeler;
     }
 
+    public double getIngezetBedrag() {
+        return ingezetBedrag;
+    }
+
+    public void setIngezetBedrag(double ingezetBedrag) {
+        this.ingezetBedrag = ingezetBedrag;
+        notifyObservers();
+    }
+
     @Override
     public void notifyObservers() {
         for (Observer o : observers) {
-            o.update(getSpelersObserve(), getHuidigeSpeler().getSaldo());
+            o.update(huidigeSpeler.getSpelernaam(),ingezetBedrag);
         }
     }
 

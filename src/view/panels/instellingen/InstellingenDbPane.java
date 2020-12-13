@@ -1,5 +1,6 @@
 package view.panels.instellingen;
 
+import controller.InstellingenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -18,7 +19,7 @@ public class InstellingenDbPane extends GridPane {
     );
     private Button saveKnop;
 
-    public InstellingenDbPane(Gokspel gokspel) {
+    public InstellingenDbPane(InstellingenController instie) {
 
         ToggleGroup groep = new ToggleGroup();
         file = new RadioButton("DB in memory");

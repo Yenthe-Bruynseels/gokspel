@@ -16,8 +16,6 @@ public class Gokspel implements Subject {
     private Speler huidigeSpeler;
     private List<Observer> observers = new ArrayList<Observer>();
 
-
-
     public Gokspel(){
         setDb(new SpelersDatabaseInMemory());
         this.spelers = new HashMap<>();

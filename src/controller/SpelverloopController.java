@@ -25,7 +25,6 @@ public class SpelverloopController implements Observer {
         this.view = view;
     }
 
-
     private void setModel(Gokspel gokspel){
         this.gokspel = gokspel;
     }

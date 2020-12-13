@@ -26,7 +26,6 @@ public class SpelverloopPane extends GridPane {
         this.getChildren().addAll(spelernaamText,saldoText);
     }
 
-
     private void setController(SpelverloopController spellopie) {
         this.spellopie = spellopie;
     }

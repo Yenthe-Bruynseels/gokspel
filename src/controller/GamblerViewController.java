@@ -4,10 +4,11 @@ import javafx.collections.ObservableList;
 import model.Gokspel;
 import model.Speler;
 import model.observer.Observer;
+import view.GamblerMainPane;
 import view.GamblerView;
 
 public class GamblerViewController implements Observer {
-    private GamblerView view;
+    private GamblerMainPane view;
     private Gokspel gokspel;
 
     public GamblerViewController(Gokspel gokspel) {
@@ -24,7 +25,7 @@ public class GamblerViewController implements Observer {
         this.gokspel = gokspel;
     }
 
-    public void setView(GamblerView view) {
+    public void setView(GamblerMainPane view) {
         this.view = view;
     }
 

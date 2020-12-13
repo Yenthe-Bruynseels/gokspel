@@ -15,6 +15,7 @@ import model.Speler;
 
 
 public class GamblerMainPane extends GridPane {
+    private GamblerViewController gambie;
 
     private Label spelernaamLabel, goksaldoLabel;
     private TextField spelernaamTextField, goksaldo;
@@ -23,6 +24,8 @@ public class GamblerMainPane extends GridPane {
     private RadioButton strategie1, strategie2, strategie3, strategie4;
 
     public GamblerMainPane(GamblerViewController gambie) {
+        setController(gambie);
+        this.gambie.setView(this);
         this.setPadding(new Insets(10,10,10,10));
         this.setVgap(8);
         this.setHgap(10);
@@ -130,5 +133,9 @@ public class GamblerMainPane extends GridPane {
         });
 
     }
+    private void setController(GamblerViewController gambie) {
+        this.gambie = gambie;
+    }
+
 }
 

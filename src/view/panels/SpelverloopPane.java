@@ -8,6 +8,7 @@ public class SpelverloopPane extends GridPane {
 
 
     public SpelverloopPane(SpelverloopController spellopie) {
-
+        setController(spellopie);
+        this.spellopie.setView(this);
     }
 }

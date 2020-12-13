@@ -21,6 +21,8 @@ public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;
 
     public GamblerOverviewPane(SpelersController spellie) {
+        setController(spellie);
+        this.spellie.setView(this);
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -44,6 +46,10 @@ public class GamblerOverviewPane extends GridPane {
 
 
         this.getChildren().add(table);
+    }
+
+    private void setController(SpelersController spellie) {
+        this.spellie = spellie;
     }
 
     private void refresh() {

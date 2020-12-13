@@ -8,7 +8,7 @@ import view.panels.SpelverloopPane;
 
 public class SpelverloopController implements Observer {
     private Gokspel gokspel;
-    private SpelverloopPane spelverloopPane;
+    private SpelverloopPane view;
 
     public SpelverloopController(Gokspel gokspel){
         setModel(gokspel);

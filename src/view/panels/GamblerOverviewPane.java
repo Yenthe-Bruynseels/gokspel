@@ -19,6 +19,7 @@ import java.util.List;
 
 public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;
+    private SpelersController spellie;
 
     public GamblerOverviewPane(SpelersController spellie) {
         setController(spellie);

@@ -1,25 +1,32 @@
 package view;
 
 
+import controller.InstellingenController;
+import controller.SpelersController;
+import controller.SpelverloopController;
+import controller.StatistiekenController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.database.SpelersDatabaseInMemory;
 import view.panels.GamblerOverviewPane;
 import model.Gokspel;
+import view.panels.SpelverloopPane;
 import view.panels.instellingen.InstellingenMainPane;
 
 public class AdminMainPane extends BorderPane {
 
 
-	public AdminMainPane(Gokspel gokspel){
-	    TabPane tabPane = new TabPane(); 	    
-        Tab spelVerloopTab = new Tab("Spelverloop");
-        GamblerOverviewPane gamblerOverviewPane = new GamblerOverviewPane(gokspel);
+	public AdminMainPane(InstellingenController instie, SpelersController spellie, SpelverloopController spellopie, StatistiekenController statie){
+	    TabPane tabPane = new TabPane();
+	    SpelverloopPane spelverloopPane = new SpelverloopPane(spellopie);
+        Tab spelVerloopTab = new Tab("Spelverloop", spelverloopPane);
+        GamblerOverviewPane gamblerOverviewPane = new GamblerOverviewPane(spellie);
         Tab spelerTab = new Tab("Spelers",gamblerOverviewPane);
-        InstellingenMainPane instellingPane = new InstellingenMainPane(gokspel);
+        InstellingenMainPane instellingPane = new InstellingenMainPane(instie);
         Tab instellingTab = new Tab("Instellingen", instellingPane);
-        Tab statistiekTab = new Tab("Statistieken");
+        StatistiekenPane statistiekenPane = new StatistiekenPane(statie);
+        Tab statistiekTab = new Tab("Statistieken", statistiekenPane);
 
 
         tabPane.getTabs().add(spelVerloopTab);

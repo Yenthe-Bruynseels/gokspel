@@ -1,6 +1,7 @@
 package view.panels;
 
 
+import controller.SpelersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,7 +20,7 @@ import java.util.List;
 public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;
 
-    public GamblerOverviewPane(Gokspel gokspel) {
+    public GamblerOverviewPane(SpelersController spellie) {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -38,7 +39,7 @@ public class GamblerOverviewPane extends GridPane {
         colSaldo.setMinWidth(125);
         colSaldo.setCellValueFactory(new PropertyValueFactory<Speler, Double>("saldo"));
         table.getColumns().addAll(colSpelernaam, colAchternaam, colVoornaam, colSaldo);
-        table.getItems().addAll(gokspel.getSpelersObserve());
+        table.getItems().addAll(spellie.getSpelersObserve());
         table.getSortOrder().add(colSpelernaam);
 
 

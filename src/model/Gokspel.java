@@ -1,6 +1,5 @@
 package model;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.PropertiesLoadSave;
@@ -8,14 +7,10 @@ import model.database.SpelersDatabaseInMemory;
 import model.observer.Observer;
 import model.observer.Subject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
-
-public class Gokspel {
+public class Gokspel implements Subject {
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
     private Speler huidigeSpeler;
@@ -62,7 +57,7 @@ public class Gokspel {
         this.huidigeSpeler = huidigeSpeler;
     }
 
-    /*@Override
+    @Override
     public void notifyObservers() {
         for (Observer o : observers) {
             o.update(getSpelersObserve(), getHuidigeSpeler().getSaldo());
@@ -71,6 +66,11 @@ public class Gokspel {
 
     @Override
     public void registerObserver(Observer observer) {
-        this.observers.add(observer);
-    }*/
+            observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
 }

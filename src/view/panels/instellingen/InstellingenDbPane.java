@@ -39,11 +39,11 @@ public class InstellingenDbPane extends GridPane {
         //SAVE KNOP VOOR ALLE INSTELLINGEN
         this.add(saveKnop,1,6);
 
-        if (gokspel.checkBestaat("DATABASE")) {
-            comboBox.getSelectionModel().select(gokspel.loadProperty("DATABASE"));
+        if (instie.checkBestaat("DATABASE")) {
+            comboBox.getSelectionModel().select(instie.loadProperty("DATABASE"));
         }
 
-        file.setSelected(gokspel.loadProperty("DATABASE").equals("txt") || gokspel.loadProperty("DATABASE").equals("xls"));
+        file.setSelected(instie.loadProperty("DATABASE").equals("txt") || instie.loadProperty("DATABASE").equals("xls"));
 
         saveKnop.setOnAction(onClick -> {
                 String database = comboBox.getValue().toString();

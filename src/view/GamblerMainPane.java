@@ -18,6 +18,7 @@ public class GamblerMainPane extends GridPane {
     private Button startGokspel, bevestigKeuze;
     private Text saldoText, kiesText, strategieText1, strategieText2, strategieText3, strategieText4;
     private RadioButton strategie1, strategie2, strategie3, strategie4;
+    private final ToggleGroup group = new ToggleGroup();
 
     public GamblerMainPane(GamblerViewController gambie) {
         setController(gambie);
@@ -41,7 +42,6 @@ public class GamblerMainPane extends GridPane {
         this.startGokspel = new Button("Start gokspel");
         setConstraints(startGokspel, 1, 2);
 
-
         kiesText = new Text("Kies je gok strategie uit onderstaande lijst");
         setConstraints(kiesText,0, 4);
 
@@ -49,6 +49,12 @@ public class GamblerMainPane extends GridPane {
         strategie2 = new RadioButton("De som van de ogen van alle worpen samen is 21");
         strategie3 = new RadioButton("Het aantal ogen is bij elke worp hogen dan bij de vorige worp");
         strategie4 = new RadioButton("het aantal ogen is bij minimaal 1 worp lager dan 6");
+
+        strategie1.setToggleGroup(group);
+        strategie2.setToggleGroup(group);
+        strategie3.setToggleGroup(group);
+        strategie4.setToggleGroup(group);
+
         strategieText1 = new Text("mogelijke winst is 4 x je inzet");
         strategieText2 = new Text("mogelijke winst is 5 x je inzet");
         strategieText3 = new Text("mogelijke winst is 10 x je inzet");
@@ -58,6 +64,7 @@ public class GamblerMainPane extends GridPane {
         setConstraints(strategie2, 0, 6);
         setConstraints(strategie3, 0, 7);
         setConstraints(strategie4, 0, 8);
+
         setConstraints(strategieText1, 3, 5);
         setConstraints(strategieText2, 3, 6);
         setConstraints(strategieText3, 3, 7);
@@ -65,7 +72,6 @@ public class GamblerMainPane extends GridPane {
 
         this.bevestigKeuze = new Button("Bevestig je keuze");
         setConstraints(bevestigKeuze, 1, 9);
-
 
         this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, kiesText, strategie1,strategie2,strategie3,strategie4,strategieText1,strategieText2,strategieText3,strategieText4, bevestigKeuze);
 

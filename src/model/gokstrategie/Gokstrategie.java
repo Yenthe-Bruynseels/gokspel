@@ -6,18 +6,26 @@ public enum Gokstrategie {
     ELKEWORPHOGERDANVORIGE("Het aantal ogen is bij elke worp hoger dan bij de vorige worp", 10),
     MIN1LAGERDAN6("Het aantal ogen is bij minimaal 1 worp lager dan 6", 1.1);
 
-    private final String volledigUileg;
-    private final double rendement;
+    private String volledigeUitleg;
+    private double rendement;
 
     Gokstrategie(String volledigeUitleg, double rendement) {
-        this.volledigUileg = volledigeUitleg;
-        this.rendement = rendement;
+        setVolledigeUitleg(volledigeUitleg);
+        setRendement(rendement);
 
 
     }
 
+    public void setVolledigeUitleg(String volledigeUitleg) {
+        this.volledigeUitleg = volledigeUitleg;
+    }
+
+    public void setRendement(double rendement) {
+        this.rendement = rendement;
+    }
+
     public String getVolledigUileg() {
-        return volledigUileg;
+        return volledigeUitleg;
     }
 
     public double getRendement() {

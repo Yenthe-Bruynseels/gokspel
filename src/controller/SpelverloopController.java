@@ -15,9 +15,13 @@ public class SpelverloopController implements Observer {
     }
 
     @Override
-    public void update(String spelernaam, double saldo) {
-        //view.update(huidigeSpeler.getSpelernaam(), huidigeSpeler.getSaldo());
-        view.update(spelernaam, saldo);
+    public void update(Speler speler, double saldo) {
+        view.update(speler, saldo);
+    }
+
+    @Override
+    public void updateGok(String gokstrategie) {
+        view.updateGok(gokstrategie);
     }
 
 

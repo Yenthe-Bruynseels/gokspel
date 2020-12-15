@@ -3,8 +3,11 @@ package controller;
 import javafx.collections.ObservableList;
 import model.Gokspel;
 import model.Speler;
+import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
 import view.GamblerMainPane;
+
+import java.util.List;
 
 
 public class GamblerViewController implements Observer {
@@ -43,5 +46,9 @@ public class GamblerViewController implements Observer {
 
     public void setIngezetBedrag(double saldo) {
         gokspel.setIngezetBedrag(saldo);
+    }
+
+    public Gokstrategie[] getAlleGokstrategieën() {
+        return gokspel.getAlleGokstrategieën();
     }
 }

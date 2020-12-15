@@ -16,8 +16,8 @@ public class SpelersController implements Observer {
     }
 
     @Override
-    public void update(String spelernaam, double saldo) {
-
+    public void update(Speler speler, double saldo) {
+        // Geen implementatie nodig
     }
 
     private void setModel(Gokspel gokspel) {

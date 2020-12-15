@@ -12,8 +12,6 @@ public enum Gokstrategie {
     Gokstrategie(String volledigeUitleg, double rendement) {
         setVolledigeUitleg(volledigeUitleg);
         setRendement(rendement);
-
-
     }
 
     public void setVolledigeUitleg(String volledigeUitleg) {
@@ -24,7 +22,7 @@ public enum Gokstrategie {
         this.rendement = rendement;
     }
 
-    public String getVolledigUileg() {
+    public String getVolledigUitleg() {
         return volledigeUitleg;
     }
 

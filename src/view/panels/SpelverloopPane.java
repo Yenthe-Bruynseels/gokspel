@@ -4,11 +4,12 @@ import controller.SpelverloopController;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import model.Speler;
 
 public class SpelverloopPane extends GridPane {
     private SpelverloopController spellopie;
 
-    private Text spelernaamText, saldoText;
+    private Text spelernaamText, saldoText, gokstrategieText;
 
 
     public SpelverloopPane(SpelverloopController spellopie) {
@@ -22,16 +23,23 @@ public class SpelverloopPane extends GridPane {
         setConstraints(spelernaamText,0,0);
         saldoText = new Text();
         setConstraints(saldoText,0,1);
+        gokstrategieText = new Text();
+        setConstraints(gokstrategieText,0,2);
 
-        this.getChildren().addAll(spelernaamText,saldoText);
+        this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText);
     }
 
     private void setController(SpelverloopController spellopie) {
         this.spellopie = spellopie;
     }
 
-    public void update(String spelernaam, double saldo) {
-        spelernaamText.setText(spelernaam);
-        saldoText.setText(Double.toString(saldo));
+    public void update(Speler speler, double saldo) {
+        spelernaamText.setText("De huidige speler is " + speler.getVoornaam() + " " + speler.getAchternaam() + "- Spelernaam: " + speler.getSpelernaam());
+        saldoText.setText("Inzet = " + saldo);
+
+    }
+
+    public void updateGok(String gokstrategie) {
+        gokstrategieText.setText("De gekozen gokstrategie is: " + gokstrategie);
     }
 }

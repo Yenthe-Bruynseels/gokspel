@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
+import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
 import model.observer.Subject;
 
@@ -63,13 +64,23 @@ public class Gokspel implements Subject {
 
     public void setIngezetBedrag(double ingezetBedrag) {
         this.ingezetBedrag = ingezetBedrag;
-        notifyObservers();
+    }
+
+    public Gokstrategie[] getAlleGokstrategieën() {
+        return Gokstrategie.values();
     }
 
     @Override
     public void notifyObservers() {
         for (Observer o : observers) {
-            o.update(huidigeSpeler.getSpelernaam(),ingezetBedrag);
+            o.update(huidigeSpeler,ingezetBedrag);
+        }
+    }
+
+    @Override
+    public void notifyObserversGok(String gokstrategie) {
+        for (Observer o : observers) {
+            o.updateGok(gokstrategie);
         }
     }
 

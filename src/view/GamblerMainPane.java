@@ -78,6 +78,17 @@ public class GamblerMainPane extends GridPane {
         goksaldoLabel.setVisible(false);
         goksaldo.setVisible(false);
         startGokspel.setVisible(false);
+        kiesText.setVisible(false);
+        strategie1.setVisible(false);
+        strategie2.setVisible(false);
+        strategie3.setVisible(false);
+        strategie4.setVisible(false);
+        strategieText1.setVisible(false);
+        strategieText2.setVisible(false);
+        strategieText3.setVisible(false);
+        strategieText4.setVisible(false);
+        bevestigKeuze.setVisible(false);
+
 
         spelernaamTextField.setOnMouseClicked(event -> {
             spelernaamTextField.clear();
@@ -124,7 +135,16 @@ public class GamblerMainPane extends GridPane {
         });
 
         startGokspel.setOnMouseClicked(event -> {
-            System.out.println("wollah goe gerold G");
+            kiesText.setVisible(true);
+            strategie1.setVisible(true);
+            strategie2.setVisible(true);
+            strategie3.setVisible(true);
+            strategie4.setVisible(true);
+            strategieText1.setVisible(true);
+            strategieText2.setVisible(true);
+            strategieText3.setVisible(true);
+            strategieText4.setVisible(true);
+            bevestigKeuze.setVisible(true);
         });
     }
     private void setController(GamblerViewController gambie) {

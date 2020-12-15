@@ -20,7 +20,7 @@ public class GamblerViewController implements Observer {
 
 
     @Override
-    public void update(String spelernaam, double saldo) {
+    public void update(Speler speler, double saldo) {
 
     }
 

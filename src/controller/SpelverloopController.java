@@ -24,6 +24,10 @@ public class SpelverloopController implements Observer {
         view.updateGok(gokstrategie);
     }
 
+    @Override
+    public Gokspel getModel() {
+        return this.gokspel;
+    }
 
     public void setView(SpelverloopPane view){
         this.view = view;

@@ -183,6 +183,5 @@ public class GamblerMainPane extends GridPane {
     private void setController(GamblerViewController gambie) {
         this.gambie = gambie;
     }
-
 }
 

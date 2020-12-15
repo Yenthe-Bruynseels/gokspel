@@ -19,9 +19,20 @@ public class StatistiekenController implements Observer {
         // Geen implementatie nodig
     }
 
+    @Override
+    public void updateGok(String gokstrategie) {
+
+    }
+
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;
     }
+
+    @Override
+    public Gokspel getModel() {
+        return this.gokspel;
+    }
+
 
     public void setView(StatistiekenPane view) {
         this.view = view;

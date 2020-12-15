@@ -24,6 +24,17 @@ public class GamblerViewController implements Observer {
 
     }
 
+    @Override
+    public void updateGok(String gokstrategie) {
+
+    }
+
+    @Override
+    public Gokspel getModel() {
+        return this.gokspel;
+    }
+
+
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;
     }

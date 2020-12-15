@@ -20,6 +20,16 @@ public class SpelersController implements Observer {
         // Geen implementatie nodig
     }
 
+    @Override
+    public void updateGok(String gokstrategie) {
+
+    }
+    @Override
+    public Gokspel getModel() {
+        return this.gokspel;
+    }
+
+
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;
     }

@@ -187,6 +187,7 @@ public class GamblerMainPane extends GridPane {
             boolean kanWinnen = gambie.evalueerWorp(worp);
             counter++;
             Text worpText = new Text("worp" + counter + ": " + worp);
+            //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
             Text worpText2 = new Text(worpText.getText());
             worpenbox.getChildren().add(worpText);
             gambie.getModel().notifyObserversWorp(worpText2);
@@ -196,6 +197,7 @@ public class GamblerMainPane extends GridPane {
                 System.out.println("haha loser");
                 Text verlorenText = new Text("Je hebt verloren");
                 worpenbox.getChildren().add(verlorenText);
+                //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
                 Text verlorenText2 = new Text(verlorenText.getText());
                 worpenbox.getChildren().add(worpText);
                 gambie.getModel().notifyObserversWorp(verlorenText2);
@@ -206,6 +208,7 @@ public class GamblerMainPane extends GridPane {
                     werpDobbelsteen.setOnMouseClicked(null);
                     if (kanWinnen) {
                         Text gewonnenText = new Text("Je hebt gewonnen");
+                        //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
                         Text gewonnenText2 = new Text(gewonnenText.getText());
                         worpenbox.getChildren().add(gewonnenText);
                         gambie.getModel().notifyObserversWorp(gewonnenText2);

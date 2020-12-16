@@ -34,6 +34,13 @@ public class GamblerViewController implements Observer {
         return this.gokspel;
     }
 
+    public int werpDobbelsteen() {
+        return gokspel.werpDobbelsteen();
+    }
+
+    public boolean evalueerWorp(int worp) {
+        return gokspel.evalueerWorp(worp);
+    }
 
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;
@@ -62,4 +69,6 @@ public class GamblerViewController implements Observer {
     public Gokstrategie[] getAlleGokstrategieën() {
         return gokspel.getAlleGokstrategieën();
     }
+
+
 }

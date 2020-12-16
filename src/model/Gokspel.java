@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
 import model.database.factory.LoadSaveFactory;
@@ -23,7 +24,6 @@ public class Gokspel implements Subject {
     private Speler huidigeSpeler;
     private double ingezetBedrag;
     private List<Observer> observers = new ArrayList<Observer>();
-    private List<Integer> worpen = new ArrayList<>();
 
 
     public Gokspel(){
@@ -78,15 +78,17 @@ public class Gokspel implements Subject {
     }
 
     public int werpDobbelsteen() {
-        int worp = dobbie.werpDobbelsteen();
-        worpen.add(worp);
-        return worp;
+        return dobbie.werpDobbelsteen();
     }
 
     public void setStrategy(String keuze) {
         GokstrategieStrategyFactory strategyFactory = GokstrategieStrategyFactory.getInstance();
         GokstrategieStrategy strategy = strategyFactory.getStrategy(keuze);
         this.gokstrategie = strategy;
+    }
+
+    public boolean evalueerWorp(int worp) {
+        return gokstrategie.evalueerGok(worp);
     }
 
     @Override
@@ -100,6 +102,13 @@ public class Gokspel implements Subject {
     public void notifyObserversGok(String gokstrategie) {
         for (Observer o : observers) {
             o.updateGok(gokstrategie);
+        }
+    }
+
+    @Override
+    public void notifyObserversWorp(Text text) {
+        for (Observer o : observers) {
+            o.updateWorp(text);
         }
     }
 

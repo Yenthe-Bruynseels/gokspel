@@ -18,8 +18,9 @@ public class GamblerMainPane extends GridPane {
     private TextField spelernaamTextField, goksaldo;
     private Button startGokspel, bevestigKeuze, werpDobbelsteen;
     private Text saldoText;
-    private VBox gokstrategieënGroep, rendementGroep;
+    private VBox gokstrategieënGroep, rendementGroep, worpenbox;
     private ToggleGroup toggleGroep;
+    private int counter = 0;
 
     public GamblerMainPane(GamblerViewController gambie) {
         setController(gambie);
@@ -70,7 +71,10 @@ public class GamblerMainPane extends GridPane {
         werpDobbelsteen = new Button("Werp dobbelsteen");
         setConstraints(werpDobbelsteen,0, 4);
 
-        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, rendementGroep, werpDobbelsteen);
+        worpenbox = new VBox();
+        worpenbox.setSpacing(4);
+
+        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, rendementGroep, werpDobbelsteen, worpenbox);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                  Events
@@ -101,6 +105,7 @@ public class GamblerMainPane extends GridPane {
         gokstrategieënGroep.setVisible(false);
         rendementGroep.setVisible(false);
         werpDobbelsteen.setVisible(false);
+        worpenbox.setVisible(false);
     }
 
     private void inlogActivatie() {
@@ -173,6 +178,39 @@ public class GamblerMainPane extends GridPane {
 
     private void werpDobbelsteen() {
         werpDobbelsteen.setOnMouseClicked(event -> {
+
+            worpenbox.setVisible(true);
+            setConstraints(worpenbox,0, 5);
+
+            int worp = gambie.werpDobbelsteen();
+            boolean kanWinnen = gambie.evalueerWorp(worp);
+            counter++;
+            Text worpText = new Text("worp" + counter + ": " + worp);
+            Text worpText2 = new Text(worpText.getText());
+            worpenbox.getChildren().add(worpText);
+            gambie.getModel().notifyObserversWorp(worpText2);
+
+            if (!kanWinnen) {
+                werpDobbelsteen.setOnMouseClicked(null);
+                System.out.println("haha loser");
+                Text verlorenText = new Text("Je hebt verloren");
+                worpenbox.getChildren().add(verlorenText);
+                Text verlorenText2 = new Text(verlorenText.getText());
+                worpenbox.getChildren().add(worpText);
+                gambie.getModel().notifyObserversWorp(verlorenText2);
+            }
+            else {
+
+                if (counter == 4) {
+                    werpDobbelsteen.setOnMouseClicked(null);
+                    if (kanWinnen) {
+                        Text gewonnenText = new Text("Je hebt gewonnen");
+                        Text gewonnenText2 = new Text(gewonnenText.getText());
+                        worpenbox.getChildren().add(gewonnenText);
+                        gambie.getModel().notifyObserversWorp(gewonnenText2);
+                    }
+                }
+            }
 
         });
     }

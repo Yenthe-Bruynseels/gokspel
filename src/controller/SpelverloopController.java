@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 import model.Speler;
 import model.observer.Observer;
 import model.Gokspel;
@@ -22,6 +23,11 @@ public class SpelverloopController implements Observer {
     @Override
     public void updateGok(String gokstrategie) {
         view.updateGok(gokstrategie);
+    }
+
+    @Override
+    public void updateWorp(Text text) {
+        view.updateWorp(text);
     }
 
     @Override

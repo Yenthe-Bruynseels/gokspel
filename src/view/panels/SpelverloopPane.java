@@ -3,6 +3,7 @@ package view.panels;
 import controller.SpelverloopController;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.Speler;
 
@@ -10,6 +11,7 @@ public class SpelverloopPane extends GridPane {
     private SpelverloopController spellopie;
 
     private Text spelernaamText, saldoText, gokstrategieText;
+    private VBox worpenbox;
 
 
     public SpelverloopPane(SpelverloopController spellopie) {
@@ -26,7 +28,11 @@ public class SpelverloopPane extends GridPane {
         gokstrategieText = new Text();
         setConstraints(gokstrategieText,0,2);
 
-        this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText);
+        worpenbox = new VBox();
+        worpenbox.setSpacing(4);
+        setConstraints(worpenbox,0,3);
+
+        this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText, worpenbox);
     }
 
     private void setController(SpelverloopController spellopie) {
@@ -41,5 +47,9 @@ public class SpelverloopPane extends GridPane {
 
     public void updateGok(String gokstrategie) {
         gokstrategieText.setText("De gekozen gokstrategie is: " + gokstrategie);
+    }
+
+    public void updateWorp(Text text) {
+        worpenbox.getChildren().add(text);
     }
 }

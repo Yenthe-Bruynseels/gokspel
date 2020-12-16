@@ -177,6 +177,7 @@ public class GamblerMainPane extends GridPane {
     }
 
     private void werpDobbelsteen() {
+
         werpDobbelsteen.setOnMouseClicked(event -> {
 
             worpenbox.setVisible(true);

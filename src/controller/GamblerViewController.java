@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
@@ -21,12 +22,17 @@ public class GamblerViewController implements Observer {
 
     @Override
     public void update(Speler speler, double saldo) {
-
+        // Geen implementatie nodig
     }
 
     @Override
     public void updateGok(String gokstrategie) {
+        // Geen implementatie nodig
+    }
 
+    @Override
+    public void updateWorp(Text text) {
+        // Geen implementatie nodig
     }
 
     @Override

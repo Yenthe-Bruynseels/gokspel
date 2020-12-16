@@ -20,7 +20,7 @@ public class GokstrategieStrategyFactory {
             case "Het aantal ogen is bij elke worp een even getal":
                 gekozenStrategie = "ElkeWorpEven";
                 break;
-            case "HOGER":
+            case "Het aantal ogen is bij elke worp hoger dan bij de vorige worp":
                 gekozenStrategie = "ElkeWorpHogerDanVorige";
                 break;
             case "je wint altijd":

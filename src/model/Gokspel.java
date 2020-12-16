@@ -14,9 +14,11 @@ import java.util.*;
 public class Gokspel implements Subject {
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
+    Dobbelsteen dobbie = new Dobbelsteen();
     private Speler huidigeSpeler;
     private double ingezetBedrag;
     private List<Observer> observers = new ArrayList<Observer>();
+    private List<Integer> worpen = new ArrayList<>();
 
 
     public Gokspel(){
@@ -68,6 +70,12 @@ public class Gokspel implements Subject {
 
     public Gokstrategie[] getAlleGokstrategieën() {
         return Gokstrategie.values();
+    }
+
+    public int werpDobbelsteen() {
+        int worp = dobbie.werpDobbelsteen();
+        worpen.add(worp);
+        return worp;
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Dobbelsteen {
 
 
     public int werpDobbelsteen(){
-        return (int) (Math.random() * (6 + 1));
+        return (int) (Math.random() * 6) +1;
     }
 
 }

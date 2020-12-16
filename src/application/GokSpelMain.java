@@ -11,12 +11,14 @@ import view.GamblerView;
 import view.panels.GamblerOverviewPane;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GokSpelMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+
 		Gokspel gokspel = new Gokspel();
 
 		GamblerViewController gambie = new GamblerViewController(gokspel);

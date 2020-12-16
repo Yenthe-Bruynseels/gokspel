@@ -26,7 +26,7 @@ public class GokstrategieStrategyFactory {
             case "je wint altijd":
                 gekozenStrategie = "AltijdWinst";
                 break;
-            case "21":
+            case "De som van de ogen van alle worpen samen is 21":
                 gekozenStrategie = "SomIs21";
                 break;
             default:

@@ -160,6 +160,7 @@ public class GamblerMainPane extends GridPane {
             RadioButton geselecteerdeButton = (RadioButton) toggleGroep.getSelectedToggle();
             String geselecteerdeGokstrategie = geselecteerdeButton.getText();
             gambie.getModel().notifyObserversGok(geselecteerdeGokstrategie);
+            gambie.getModel().setStrategy(geselecteerdeGokstrategie);
 
             werpDobbelsteen.setVisible(true);
             // na bevestiging keuze is aanpassing niet meer mogelijk
@@ -172,11 +173,7 @@ public class GamblerMainPane extends GridPane {
 
     private void werpDobbelsteen() {
         werpDobbelsteen.setOnMouseClicked(event -> {
-            System.out.println("das mooi gerold wollah");
-            startSpelVisibilities();
-            inlogActivatie();
-            goksaldoInzet();
-            startGokspel();
+
         });
     }
 

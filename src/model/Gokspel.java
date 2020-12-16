@@ -4,7 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
+import model.database.factory.LoadSaveFactory;
+import model.database.strategy.LoadSaveStrategy;
 import model.gokstrategie.Gokstrategie;
+import model.gokstrategie.GokstrategieStrategy;
+import model.gokstrategie.GokstrategieStrategyFactory;
 import model.observer.Observer;
 import model.observer.Subject;
 
@@ -14,7 +18,8 @@ import java.util.*;
 public class Gokspel implements Subject {
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
-    Dobbelsteen dobbie = new Dobbelsteen();
+    private Dobbelsteen dobbie = new Dobbelsteen();
+    private GokstrategieStrategy gokstrategie;
     private Speler huidigeSpeler;
     private double ingezetBedrag;
     private List<Observer> observers = new ArrayList<Observer>();
@@ -76,6 +81,12 @@ public class Gokspel implements Subject {
         int worp = dobbie.werpDobbelsteen();
         worpen.add(worp);
         return worp;
+    }
+
+    public void setStrategy(String keuze) {
+        GokstrategieStrategyFactory strategyFactory = GokstrategieStrategyFactory.getInstance();
+        GokstrategieStrategy strategy = strategyFactory.getStrategy(keuze);
+        this.gokstrategie = strategy;
     }
 
     @Override

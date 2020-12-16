@@ -17,13 +17,13 @@ public class GokstrategieStrategyFactory {
     public GokstrategieStrategy getStrategy(String keuze) {
         String gekozenStrategie = "";
         switch (keuze) {
-            case "EVEN":
+            case "Het aantal ogen is bij elke worp een even getal":
                 gekozenStrategie = "ElkeWorpEven";
                 break;
             case "HOGER":
                 gekozenStrategie = "ElkeWorpHogerDanVorige";
                 break;
-            case "altijd":
+            case "je wint altijd":
                 gekozenStrategie = "AltijdWinst";
                 break;
             case "21":

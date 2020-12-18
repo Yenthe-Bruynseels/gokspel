@@ -28,7 +28,7 @@ public class SpelersController implements Observer {
 
     @Override
     public void updateWorp(Text text) {
-        // Geen implementatie nodig
+        view.refresh();
     }
 
     @Override

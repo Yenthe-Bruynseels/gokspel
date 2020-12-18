@@ -58,7 +58,7 @@ public class GamblerOverviewPane extends GridPane {
         this.spellie = spellie;
     }
 
-    private void refresh() {
-        //
+    public void refresh() {
+        table.refresh();
     }
 }

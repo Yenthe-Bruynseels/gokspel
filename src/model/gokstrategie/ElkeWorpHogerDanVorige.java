@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
     private List<Integer> worpen;
+    private double winstfactor = 10.0;
 
     public ElkeWorpHogerDanVorige(){
         worpen = new ArrayList<>();

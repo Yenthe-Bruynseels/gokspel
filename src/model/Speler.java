@@ -63,6 +63,15 @@ public class Speler implements Comparable<Speler>{
         return saldo;
     }
 
+    public void verminderSaldo(double ingezetBedrag) {
+        this.saldo = this.saldo - ingezetBedrag ;
+
+    }
+
+    public void vermeerderSaldo(double winstfactor, double ingezetBedrag) {
+        this.saldo =  this.saldo + (ingezetBedrag * winstfactor);
+    }
+
     public String toStringWithGivenSeperator(String seperator) {
         return achternaam + seperator + voornaam + seperator + spelernaam + seperator + saldo;
     }

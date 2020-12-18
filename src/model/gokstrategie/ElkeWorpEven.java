@@ -1,12 +1,17 @@
 package model.gokstrategie;
 
 public class ElkeWorpEven implements GokstrategieStrategy{
+    private double winstfactor = 4.0;
 
+    @Override
+    public boolean evalueerGok(int worp){
+        return (worp % 2) == 0;
+    }
 
-    public ElkeWorpEven(){
-
-    };
-
+    @Override
+    public double getWinstfactor() {
+        return this.winstfactor;
+    }
 
     public boolean evalueerGok(int worp){
         return worp % 2 == 0;

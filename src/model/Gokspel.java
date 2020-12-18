@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.text.Text;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
-import model.database.factory.LoadSaveFactory;
-import model.database.strategy.LoadSaveStrategy;
 import model.gokstrategie.Gokstrategie;
 import model.gokstrategie.GokstrategieStrategy;
 import model.gokstrategie.GokstrategieStrategyFactory;
@@ -67,6 +65,14 @@ public class Gokspel implements Subject {
 
     public double getIngezetBedrag() {
         return ingezetBedrag;
+    }
+
+    public void verminderSaldo() {
+        huidigeSpeler.verminderSaldo(this.ingezetBedrag);
+    }
+
+    public void vermeerderSaldo() {
+        huidigeSpeler.vermeerderSaldo(gokstrategie.getWinstfactor(), this.ingezetBedrag);
     }
 
     public void setIngezetBedrag(double ingezetBedrag) {

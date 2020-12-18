@@ -77,4 +77,11 @@ public class GamblerViewController implements Observer {
     }
 
 
+    public void verminderSaldo() {
+        gokspel.verminderSaldo();
+    }
+
+    public void vermeerderSaldo() {
+        gokspel.vermeerderSaldo();
+    }
 }

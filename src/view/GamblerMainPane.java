@@ -14,8 +14,8 @@ import model.gokstrategie.Gokstrategie;
 public class GamblerMainPane extends GridPane {
     private GamblerViewController gambie;
 
-    private Label spelernaamLabel, goksaldoLabel, kiesLabel, rendementLabel;
-    private TextField spelernaamTextField, goksaldo;
+    private Label spelernaamLabel, goksaldoLabel, kiesLabel, rendementLabel, verhoogLabel;
+    private TextField spelernaamTextField, goksaldo, verhoogSaldo;
     private Button startGokspel, bevestigKeuze, werpDobbelsteen;
     private Text saldoText;
     private VBox gokstrategieënGroep, rendementGroep, worpenbox;
@@ -25,14 +25,14 @@ public class GamblerMainPane extends GridPane {
     public GamblerMainPane(GamblerViewController gambie) {
         setController(gambie);
         this.gambie.setView(this);
-        this.setPadding(new Insets(10,10,10,10));
+        this.setPadding(new Insets(10, 10, 10, 10));
         this.setVgap(8);
         this.setHgap(10);
 
         spelernaamLabel = new Label("Wat is je spelersnaam?");
-        setConstraints(spelernaamLabel,0,0);
+        setConstraints(spelernaamLabel, 0, 0);
         spelernaamTextField = new TextField("Vul hier je spelernaam in");
-        setConstraints(spelernaamTextField,1,0);
+        setConstraints(spelernaamTextField, 1, 0);
         saldoText = new Text("");
         setConstraints(saldoText, 3, 0);
 
@@ -49,7 +49,7 @@ public class GamblerMainPane extends GridPane {
         gokstrategieënGroep.setSpacing(4);
         toggleGroep = new ToggleGroup();
         gokstrategieënGroep.getChildren().add(kiesLabel);
-        for (Gokstrategie gok: gambie.getAlleGokstrategieën()) {
+        for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
             RadioButton radioButton = new RadioButton(gok.getVolledigUitleg());
             radioButton.setToggleGroup(toggleGroep);
             gokstrategieënGroep.getChildren().add(radioButton);
@@ -57,22 +57,25 @@ public class GamblerMainPane extends GridPane {
         toggleGroep.getToggles().get(0).setSelected(true);
         bevestigKeuze = new Button("Bevestig je keuze  ");
         gokstrategieënGroep.getChildren().add(bevestigKeuze);
-        setConstraints(gokstrategieënGroep,0, 3);
+        setConstraints(gokstrategieënGroep, 0, 3);
         rendementLabel = new Label("Mogelijke winst");
         rendementGroep = new VBox();
         rendementGroep.setSpacing(4);
         rendementGroep.getChildren().add(rendementLabel);
-        for (Gokstrategie gok: gambie.getAlleGokstrategieën()) {
+        for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
             Text text = new Text(Double.toString(gok.getRendement()) + "x inzet");
             rendementGroep.getChildren().add(text);
         }
-        setConstraints(rendementGroep,2, 3);
+        setConstraints(rendementGroep, 2, 3);
 
         werpDobbelsteen = new Button("Werp dobbelsteen");
-        setConstraints(werpDobbelsteen,0, 4);
+        setConstraints(werpDobbelsteen, 0, 4);
 
         worpenbox = new VBox();
         worpenbox.setSpacing(4);
+
+        verhoogLabel = new Label("Inzet verhogen? 0 = Nee, 10 = Max, ENTER = OK");
+        verhoogSaldo = new TextField();
 
         this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, rendementGroep, werpDobbelsteen, worpenbox);
 
@@ -157,6 +160,7 @@ public class GamblerMainPane extends GridPane {
         startGokspel.setOnMouseClicked(event -> {
             gokstrategieënGroep.setVisible(true);
             rendementGroep.setVisible(true);
+            gambie.startSpel();
         });
     }
 
@@ -166,6 +170,7 @@ public class GamblerMainPane extends GridPane {
             String geselecteerdeGokstrategie = geselecteerdeButton.getText();
             gambie.getModel().notifyObserversGok(geselecteerdeGokstrategie);
             gambie.getModel().setStrategy(geselecteerdeGokstrategie);
+            gambie.bevestigKeuze();
 
             werpDobbelsteen.setVisible(true);
             // na bevestiging keuze is aanpassing niet meer mogelijk
@@ -181,7 +186,7 @@ public class GamblerMainPane extends GridPane {
         werpDobbelsteen.setOnMouseClicked(event -> {
 
             worpenbox.setVisible(true);
-            setConstraints(worpenbox,0, 5);
+            setConstraints(worpenbox, 0, 5);
 
             int worp = gambie.werpDobbelsteen();
             boolean kanWinnen = gambie.evalueerWorp(worp);
@@ -201,24 +206,58 @@ public class GamblerMainPane extends GridPane {
                 Text verlorenText2 = new Text(verlorenText.getText());
                 gambie.verminderSaldo();
                 gambie.getModel().notifyObserversWorp(verlorenText2);
-            }
-            else {
+            } else {
+                if (counter == 2) {
+                    gambie.vraagVerhoog();
+                    worpenbox.getChildren().addAll(verhoogLabel, verhoogSaldo);
+                    verhoogSaldo.setOnKeyReleased(event1 -> {
+                        if (event1.getCode() == KeyCode.ENTER) {
+                            double maxSaldo = gambie.getHuidigeSpeler().getSaldo() - gambie.getIngezetBedrag();
+                            double verhoging = Double.parseDouble(verhoogSaldo.getText());
+                            if (verhoging > 10) {
+                                Alert verhogingTeGroot = new Alert(Alert.AlertType.ERROR);
+                                verhogingTeGroot.setTitle("Verhoging te groot");
+                                verhogingTeGroot.setHeaderText("Verhoging te groot");
+                                verhogingTeGroot.setContentText("De maximale verhoging bedraagt 10 euro.");
+                                verhogingTeGroot.showAndWait();
+                            }
+                             else if (verhoging < 0) {
+                                Alert magNietVerlagen = new Alert(Alert.AlertType.ERROR);
+                                magNietVerlagen.setTitle("Mag inzet niet verlagen");
+                                magNietVerlagen.setHeaderText("Mag inzet niet verlagen");
+                                magNietVerlagen.setContentText("De inzet mag uitsluitend onveranderd blijven of met maximaal 10 euro verhoogd worden. Niet verlaagd.");
+                                magNietVerlagen.showAndWait();
+                            }
+                            else if (maxSaldo < verhoging) {
+                                Alert saldoOntoereikend = new Alert(Alert.AlertType.ERROR);
+                                saldoOntoereikend.setTitle("Saldo ontoereikend");
+                                saldoOntoereikend.setHeaderText("Saldo ontoereikend");
+                                saldoOntoereikend.setContentText("Het ingegeven bedrag is hoger dan je beschikbare saldo.");
+                                saldoOntoereikend.showAndWait();
+                            } else {
+                                gambie.setIngezetBedrag(verhoging);
+                                gambie.getModel().notifyObservers();
+                                worpenbox.getChildren().removeAll(verhoogSaldo, verhoogLabel);
+                            }
+                        }
+                    });
+                }
 
                 if (counter == 4) {
                     werpDobbelsteen.setOnMouseClicked(null);
-                    if (kanWinnen) {
-                        Text gewonnenText = new Text("Je hebt gewonnen");
-                        //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
-                        Text gewonnenText2 = new Text(gewonnenText.getText());
-                        worpenbox.getChildren().add(gewonnenText);
-                        gambie.vermeerderSaldo();
-                        gambie.getModel().notifyObserversWorp(gewonnenText2);
-                    }
+                    Text gewonnenText = new Text("Je hebt gewonnen");
+                    //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
+                    Text gewonnenText2 = new Text(gewonnenText.getText());
+                    worpenbox.getChildren().add(gewonnenText);
+                    gambie.vermeerderSaldo();
+                    gambie.getModel().notifyObserversWorp(gewonnenText2);
                 }
             }
 
         });
     }
+
+
 
     private void setController(GamblerViewController gambie) {
         this.gambie = gambie;

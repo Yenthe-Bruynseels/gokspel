@@ -6,6 +6,7 @@ import model.Gokspel;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
+import model.state.State;
 import view.GamblerMainPane;
 
 import java.util.List;
@@ -83,5 +84,21 @@ public class GamblerViewController implements Observer {
 
     public void vermeerderSaldo() {
         gokspel.vermeerderSaldo();
+    }
+
+    public void startSpel() {
+        gokspel.startSpel();
+    }
+
+    public void bevestigKeuze() {
+        gokspel.bevestigKeuze();
+    }
+
+    public void vraagVerhoog() {
+        gokspel.vraagVerhoog();
+    }
+
+    public double getIngezetBedrag() {
+        return gokspel.getIngezetBedrag();
     }
 }

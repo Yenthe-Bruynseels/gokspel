@@ -31,12 +31,4 @@ public class SpelersDatabaseInMemory {
         //
     }
 
-
-    /*public List<Speler> getSpelers() {
-        List<Speler> spelers = new ArrayList<Speler>(getSpelersInMap().values());
-        Collections.sort(spelers);
-        return spelers;
-    }*/
-
-
 }

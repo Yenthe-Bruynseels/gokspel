@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
@@ -16,7 +17,7 @@ import java.util.*;
 
 
 public class Gokspel implements Subject {
-    private State choose, play, wait, verhoogInzet, currentState;
+    private State choose, play, wait, verhoogInzet, currentState, ended;
     private SpelersDatabaseInMemory db;
     private Map<String, Speler> spelers;
     private Dobbelsteen dobbie = new Dobbelsteen();
@@ -153,27 +154,10 @@ public class Gokspel implements Subject {
     }
 
     @Override
-    public void notifyObserversWorp(Text text) {
+    public void notifyObserversWorp(Node node) {
         for (Observer o : observers) {
-            o.updateWorp(text);
+            o.updateWorp(node);
         }
-    }
-
-
-    public void bevestigKeuze() {
-        this.currentState.bevestigKeuze();
-    }
-
-    public void startSpel() {
-        this.currentState.startSpel();
-    }
-
-    public void verhoogInzet() {
-        this.currentState.verhoogInzet();
-    }
-
-    public void vraagVerhoog() {
-        this.currentState.vraagVerhoog();
     }
 
     @Override
@@ -185,6 +169,7 @@ public class Gokspel implements Subject {
     public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
+
 
 
     public void setState(State state) {
@@ -206,4 +191,12 @@ public class Gokspel implements Subject {
     public State getChoose() {
         return choose;
     }
+
+    public State getEnded() {
+        return ended;
+    }
+
+
+
+
 }

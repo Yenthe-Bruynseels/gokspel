@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.Speler;
 import model.observer.Observer;
@@ -26,8 +27,8 @@ public class SpelverloopController implements Observer {
     }
 
     @Override
-    public void updateWorp(Text text) {
-        view.updateWorp(text);
+    public void updateWorp(Node node) {
+        view.updateWorp(node);
     }
 
     @Override

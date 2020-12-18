@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;

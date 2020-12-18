@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
@@ -8,6 +9,7 @@ import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
 import model.state.State;
 import view.GamblerMainPane;
+import view.GamblerView;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class GamblerViewController implements Observer {
 
     public GamblerViewController(Gokspel gokspel) {
         setModel(gokspel);
+
     }
 
 
@@ -32,7 +35,7 @@ public class GamblerViewController implements Observer {
     }
 
     @Override
-    public void updateWorp(Text text) {
+    public void updateWorp(Node node) {
         // Geen implementatie nodig
     }
 
@@ -73,12 +76,9 @@ public class GamblerViewController implements Observer {
         gokspel.setIngezetBedrag(saldo);
     }
 
-
-
     public Gokstrategie[] getAlleGokstrategieën() {
         return gokspel.getAlleGokstrategieën();
     }
-
 
     public void verminderSaldo() {
         gokspel.verminderSaldo();
@@ -103,4 +103,10 @@ public class GamblerViewController implements Observer {
     public double getIngezetBedrag() {
         return gokspel.getIngezetBedrag();
     }
+    @Override
+    public void updateReset() {
+        view.updateReset();
+    }
+
+
 }

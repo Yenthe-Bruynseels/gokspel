@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class GamblerView {
-	private Stage stage = new Stage();		
+	private Stage stage = new Stage();
 		
 	public GamblerView(GamblerViewController gambie){
 		stage.setTitle("GAMBLER VIEW");
@@ -23,6 +23,6 @@ public class GamblerView {
 		root.getChildren().add(gridPane);
 		stage.setScene(scene);
 		stage.sizeToScene();			
-		stage.show();		
+		stage.show();
 	}
 }

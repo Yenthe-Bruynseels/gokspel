@@ -28,12 +28,12 @@ public class Play implements State {
     @Override
     public void vermeerderSaldo(double winstfactor, double ingezetBedrag) {
         gokspel.getHuidigeSpeler().vermeerderSaldo(winstfactor, ingezetBedrag);
-        gokspel.setState(gokspel.getWait());
+        gokspel.setState(gokspel.getEnded());
     }
 
     @Override
     public void verminderSaldo(double ingezetBedrag) {
         gokspel.getHuidigeSpeler().verminderSaldo(ingezetBedrag);
-        gokspel.setState(gokspel.getWait());
+        gokspel.setState(gokspel.getEnded());
     }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
@@ -26,7 +27,7 @@ public class StatistiekenController implements Observer {
     }
 
     @Override
-    public void updateWorp(Text text) {
+    public void updateWorp(Node node) {
         // Geen implementatie nodig
     }
 
@@ -37,6 +38,11 @@ public class StatistiekenController implements Observer {
     @Override
     public Gokspel getModel() {
         return this.gokspel;
+    }
+
+    @Override
+    public void updateReset() {
+        // geen implementatie nodig
     }
 
 

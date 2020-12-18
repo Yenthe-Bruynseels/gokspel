@@ -2,6 +2,7 @@ package view.panels;
 
 import controller.SpelverloopController;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -33,6 +34,7 @@ public class SpelverloopPane extends GridPane {
         setConstraints(worpenbox,0,3);
 
         this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText, worpenbox);
+
     }
 
     private void setController(SpelverloopController spellopie) {
@@ -49,7 +51,16 @@ public class SpelverloopPane extends GridPane {
         gokstrategieText.setText("De gekozen gokstrategie is: " + gokstrategie);
     }
 
-    public void updateWorp(Text text) {
-        worpenbox.getChildren().add(text);
+    public void updateWorp(Node node) {
+        worpenbox.getChildren().add(node);
+        //Werkt alleen op button, dus werkt alleen op de reset button
+        worpenbox.getChildren().get(worpenbox.getChildren().size()-1).setOnMouseClicked(event -> {
+            spellopie.getModel().notifyObserversReset();
+            spelernaamText.setText("");
+            saldoText.setText("");
+            gokstrategieText.setText("");
+            worpenbox.getChildren().clear();
+        });
     }
+
 }

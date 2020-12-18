@@ -206,6 +206,7 @@ public class GamblerMainPane extends GridPane {
                 Text verlorenText2 = new Text(verlorenText.getText());
                 gambie.verminderSaldo();
                 gambie.getModel().notifyObserversWorp(verlorenText2);
+                gambie.getModel().notifyObserversWorp(new Button("Reset game"));
             } else {
                 if (counter == 2) {
                     gambie.vraagVerhoog();
@@ -220,15 +221,13 @@ public class GamblerMainPane extends GridPane {
                                 verhogingTeGroot.setHeaderText("Verhoging te groot");
                                 verhogingTeGroot.setContentText("De maximale verhoging bedraagt 10 euro.");
                                 verhogingTeGroot.showAndWait();
-                            }
-                             else if (verhoging < 0) {
+                            } else if (verhoging < 0) {
                                 Alert magNietVerlagen = new Alert(Alert.AlertType.ERROR);
                                 magNietVerlagen.setTitle("Mag inzet niet verlagen");
                                 magNietVerlagen.setHeaderText("Mag inzet niet verlagen");
                                 magNietVerlagen.setContentText("De inzet mag uitsluitend onveranderd blijven of met maximaal 10 euro verhoogd worden. Niet verlaagd.");
                                 magNietVerlagen.showAndWait();
-                            }
-                            else if (maxSaldo < verhoging) {
+                            } else if (maxSaldo < verhoging) {
                                 Alert saldoOntoereikend = new Alert(Alert.AlertType.ERROR);
                                 saldoOntoereikend.setTitle("Saldo ontoereikend");
                                 saldoOntoereikend.setHeaderText("Saldo ontoereikend");
@@ -251,13 +250,26 @@ public class GamblerMainPane extends GridPane {
                     worpenbox.getChildren().add(gewonnenText);
                     gambie.vermeerderSaldo();
                     gambie.getModel().notifyObserversWorp(gewonnenText2);
+                    gambie.getModel().notifyObserversWorp(new Button("Reset game"));
                 }
             }
 
         });
     }
 
-
+    public void updateReset() {
+            gambie.getModel().setState(gambie.getModel().getWait());
+            startSpelVisibilities();
+            inlogActivatie();
+            goksaldoInzet();
+            startGokspel();
+            bevestigKeuze();
+            counter = 0;
+            worpenbox.getChildren().clear();
+            toggleGroep.getToggles().get(0).setSelected(true);
+            verhoogSaldo.clear();
+            werpDobbelsteen();
+        }
 
     private void setController(GamblerViewController gambie) {
         this.gambie = gambie;

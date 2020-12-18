@@ -75,6 +75,7 @@ public class Gokspel implements Subject {
         }
     }
 
+
     public double getIngezetBedrag() {
         return ingezetBedrag;
     }
@@ -156,6 +157,23 @@ public class Gokspel implements Subject {
         for (Observer o : observers) {
             o.updateWorp(text);
         }
+    }
+
+
+    public void bevestigKeuze() {
+        this.currentState.bevestigKeuze();
+    }
+
+    public void startSpel() {
+        this.currentState.startSpel();
+    }
+
+    public void verhoogInzet() {
+        this.currentState.verhoogInzet();
+    }
+
+    public void vraagVerhoog() {
+        this.currentState.vraagVerhoog();
     }
 
     @Override

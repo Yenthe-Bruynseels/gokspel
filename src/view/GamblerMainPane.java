@@ -112,7 +112,7 @@ public class GamblerMainPane extends GridPane {
     }
 
     private void inlogActivatie() {
-        spelernaamTextField.setOnKeyReleased( event -> {
+        spelernaamTextField.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 Speler speler = gambie.vindSpeler(spelernaamTextField.getText());
                 if (speler == null) {

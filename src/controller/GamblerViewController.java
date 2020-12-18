@@ -73,6 +73,8 @@ public class GamblerViewController implements Observer {
         gokspel.setIngezetBedrag(saldo);
     }
 
+
+
     public Gokstrategie[] getAlleGokstrategieën() {
         return gokspel.getAlleGokstrategieën();
     }

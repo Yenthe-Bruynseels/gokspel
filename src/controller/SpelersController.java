@@ -52,4 +52,9 @@ public class SpelersController implements Observer {
         return gokspel.getSpelersObserve();
     }
 
+    @Override
+    public void updateReset() {
+        // geen implementatie nodig
+    }
+
 }

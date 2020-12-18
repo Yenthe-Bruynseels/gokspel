@@ -49,4 +49,5 @@ public class StatistiekenController implements Observer {
     public void setView(StatistiekenPane view) {
         this.view = view;
     }
+
 }

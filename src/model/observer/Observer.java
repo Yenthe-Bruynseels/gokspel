@@ -11,4 +11,5 @@ public interface Observer {
     void updateGok(String gokstrategie);
     void updateWorp(Node node);
     Gokspel getModel();
+    void updateReset();
 }

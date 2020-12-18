@@ -10,4 +10,5 @@ public interface Subject {
     void notifyObserversWorp(Node node);
     void registerObserver(Observer observer);
     void removeObserver(Observer observer);
+    void notifyObserversReset();
 }

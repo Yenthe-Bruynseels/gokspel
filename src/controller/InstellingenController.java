@@ -53,4 +53,10 @@ public class InstellingenController implements Observer {
     public String loadProperty(String prop) {
         return gokspel.loadProperty(prop);
     }
+
+    @Override
+    public void updateReset() {
+        // geen implementatie nodig
+    }
+
 }

@@ -44,4 +44,12 @@ public class SpelverloopController implements Observer {
         this.gokspel = gokspel;
     }
 
+
+
+    @Override
+    public void updateReset() {
+        // geen implementatie nodig
+    }
+
+
 }

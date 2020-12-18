@@ -29,10 +29,8 @@ public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
         return true;
     }
 
-    /*
-    worp 1 3
-    worp 2 4
-    worp 3 5
-    worp 4 6
-     */
+    @Override
+    public double getWinstfactor() {
+        return winstfactor;
+    }
 }

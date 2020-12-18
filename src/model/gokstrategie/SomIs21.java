@@ -37,5 +37,12 @@ public class SomIs21 implements GokstrategieStrategy{
         }
         return true;
     }
+
+
+    @Override
+    public double getWinstfactor() {
+        return this.winstfactor;
+    }
+
 }
 

@@ -7,4 +7,11 @@ public class AltijdWinst implements GokstrategieStrategy {
     public boolean evalueerGok(int worp1) {
         return true;
     }
+
+    @Override
+    public double getWinstfactor() {
+        return this.winstfactor;
+    }
+
+
 }

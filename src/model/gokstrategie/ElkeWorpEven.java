@@ -13,7 +13,4 @@ public class ElkeWorpEven implements GokstrategieStrategy{
         return this.winstfactor;
     }
 
-    public boolean evalueerGok(int worp){
-        return worp % 2 == 0;
-    }
 }

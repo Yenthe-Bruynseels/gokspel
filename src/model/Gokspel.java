@@ -161,6 +161,29 @@ public class Gokspel implements Subject {
     }
 
     @Override
+    public void notifyObserversReset() {
+        for (Observer o : observers) {
+            o.updateReset();
+        }
+    }
+
+    public void bevestigKeuze() {
+        this.currentState.bevestigKeuze();
+    }
+
+    public void startSpel() {
+        this.currentState.startSpel();
+    }
+
+    public void verhoogInzet() {
+        this.currentState.verhoogInzet();
+    }
+
+    public void vraagVerhoog() {
+        this.currentState.vraagVerhoog();
+    }
+
+    @Override
     public void registerObserver(Observer observer) {
         observers.add(observer);
     }

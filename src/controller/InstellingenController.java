@@ -28,7 +28,7 @@ public class InstellingenController implements Observer {
     }
 
     @Override
-    public void updateWorp(Text text) {
+    public void updateWorp(Node node) {
         // Geen implementatie nodig
     }
 

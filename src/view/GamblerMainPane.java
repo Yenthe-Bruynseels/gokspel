@@ -1,6 +1,7 @@
 package view;
 
 import controller.GamblerViewController;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -14,11 +15,11 @@ import model.gokstrategie.Gokstrategie;
 public class GamblerMainPane extends GridPane {
     private GamblerViewController gambie;
 
-    private Label spelernaamLabel, goksaldoLabel, kiesLabel, rendementLabel, verhoogLabel;
+    private Label spelernaamLabel, goksaldoLabel, kiesLabel, winstfactorLabel, verhoogLabel;
     private TextField spelernaamTextField, goksaldo, verhoogSaldo;
     private Button startGokspel, bevestigKeuze, werpDobbelsteen;
     private Text saldoText;
-    private VBox gokstrategieënGroep, rendementGroep, worpenbox;
+    private VBox gokstrategieënGroep, winstfactorGroep, worpenbox;
     private ToggleGroup toggleGroep;
     private int counter = 0;
 
@@ -50,23 +51,27 @@ public class GamblerMainPane extends GridPane {
         toggleGroep = new ToggleGroup();
         gokstrategieënGroep.getChildren().add(kiesLabel);
         for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
-            RadioButton radioButton = new RadioButton(gok.getVolledigUitleg());
-            radioButton.setToggleGroup(toggleGroep);
-            gokstrategieënGroep.getChildren().add(radioButton);
+            if (gok.getActief()) {
+                RadioButton radioButton = new RadioButton(gok.getVolledigUitleg());
+                radioButton.setToggleGroup(toggleGroep);
+                gokstrategieënGroep.getChildren().add(radioButton);
+            }
         }
         toggleGroep.getToggles().get(0).setSelected(true);
         bevestigKeuze = new Button("Bevestig je keuze  ");
         gokstrategieënGroep.getChildren().add(bevestigKeuze);
         setConstraints(gokstrategieënGroep, 0, 3);
-        rendementLabel = new Label("Mogelijke winst");
-        rendementGroep = new VBox();
-        rendementGroep.setSpacing(4);
-        rendementGroep.getChildren().add(rendementLabel);
+        winstfactorLabel = new Label("Mogelijke winst");
+        winstfactorGroep = new VBox();
+        winstfactorGroep.setSpacing(4);
+        winstfactorGroep.getChildren().add(winstfactorLabel);
         for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
-            Text text = new Text(Double.toString(gok.getRendement()) + "x inzet");
-            rendementGroep.getChildren().add(text);
+            if (gok.getActief()) {
+                Text text = new Text(Double.toString(gok.getWinstfactor()) + "x inzet");
+                winstfactorGroep.getChildren().add(text);
+            }
         }
-        setConstraints(rendementGroep, 2, 3);
+        setConstraints(winstfactorGroep, 2, 3);
 
         werpDobbelsteen = new Button("Werp dobbelsteen");
         setConstraints(werpDobbelsteen, 0, 4);
@@ -77,7 +82,7 @@ public class GamblerMainPane extends GridPane {
         verhoogLabel = new Label("Inzet verhogen? 0 = Nee, 10 = Max, ENTER = OK");
         verhoogSaldo = new TextField();
 
-        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, rendementGroep, werpDobbelsteen, worpenbox);
+        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, winstfactorGroep, werpDobbelsteen, worpenbox);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                  Events
@@ -106,7 +111,7 @@ public class GamblerMainPane extends GridPane {
         goksaldo.setVisible(false);
         startGokspel.setVisible(false);
         gokstrategieënGroep.setVisible(false);
-        rendementGroep.setVisible(false);
+        winstfactorGroep.setVisible(false);
         werpDobbelsteen.setVisible(false);
         worpenbox.setVisible(false);
     }
@@ -159,7 +164,7 @@ public class GamblerMainPane extends GridPane {
     private void startGokspel() {
         startGokspel.setOnMouseClicked(event -> {
             gokstrategieënGroep.setVisible(true);
-            rendementGroep.setVisible(true);
+            winstfactorGroep.setVisible(true);
             gambie.startSpel();
         });
     }
@@ -207,6 +212,7 @@ public class GamblerMainPane extends GridPane {
                 gambie.verminderSaldo();
                 gambie.getModel().notifyObserversWorp(verlorenText2);
                 gambie.getModel().notifyObserversWorp(new Button("Reset game"));
+                gambie.getModel().notifyObserversWorp(new Button("End game session."));
             } else {
                 if (counter == 2) {
                     gambie.vraagVerhoog();
@@ -259,18 +265,42 @@ public class GamblerMainPane extends GridPane {
     }
 
     public void updateReset() {
-            gambie.getModel().setState(gambie.getModel().getWait());
-            startSpelVisibilities();
-            inlogActivatie();
-            goksaldoInzet();
-            startGokspel();
-            bevestigKeuze();
-            counter = 0;
-            worpenbox.getChildren().clear();
-            toggleGroep.getToggles().get(0).setSelected(true);
-            verhoogSaldo.clear();
-            werpDobbelsteen();
+        gambie.getModel().setState(gambie.getModel().getWait());
+        startSpelVisibilities();
+        inlogActivatie();
+        goksaldoInzet();
+        startGokspel();
+        bevestigKeuze();
+        counter = 0;
+        goksaldo.setText("");
+
+        gokstrategieënGroep.getChildren().clear();
+        gokstrategieënGroep.getChildren().add(kiesLabel);
+        for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
+            if (gok.getActief()) {
+                RadioButton radioButton = new RadioButton(gok.getVolledigUitleg());
+                radioButton.setToggleGroup(toggleGroep);
+                gokstrategieënGroep.getChildren().add(radioButton);
+            }
         }
+        gokstrategieënGroep.getChildren().add(bevestigKeuze);
+
+        winstfactorGroep.getChildren().clear();
+        winstfactorGroep.getChildren().add(winstfactorLabel);
+        for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
+            if (gok.getActief()) {
+                Text text = new Text(gok.getWinstfactor() + "x inzet");
+                winstfactorGroep.getChildren().add(text);
+            }
+        }
+
+
+
+        worpenbox.getChildren().clear();
+        toggleGroep.getToggles().get(0).setSelected(true);
+        verhoogSaldo.clear();
+        werpDobbelsteen();
+    }
 
     private void setController(GamblerViewController gambie) {
         this.gambie = gambie;

@@ -13,6 +13,8 @@ import model.observer.Observer;
 import model.observer.Subject;
 import model.state.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.*;
 
 
@@ -29,6 +31,7 @@ public class Gokspel implements Subject {
 
     public Gokspel() {
         setDb(new SpelersDatabaseInMemory());
+        loadStrategieën();
         this.spelers = new HashMap<>();
         spelers.putAll(this.db.getAll("speler." + PropertiesLoadSave.load("DATABASE")));
         choose = new Choose(this);
@@ -60,8 +63,25 @@ public class Gokspel implements Subject {
         return PropertiesLoadSave.propertyBestaat(prop);
     }
 
-    public String loadProperty(String prop) {
-        return PropertiesLoadSave.load(prop);
+    public void loadStrategieën() {
+        String property = PropertiesLoadSave.load("GOKSTRATEGIEEN");
+        pasAanEnum(property);
+    }
+
+    public void pasAanEnum(String property) {
+        String[] gokspelStrategie = property.split(";");
+        List<String[]> stukjes = new ArrayList<>();
+        for (String strings : gokspelStrategie) {
+            stukjes.add(strings.split(","));
+        }
+        for (int i = 0; i< getAlleGokstrategieën().length; i++) {
+            getAlleGokstrategieën()[i].setWinstfactor(Double.parseDouble(stukjes.get(i)[1]));
+            getAlleGokstrategieën()[i].setActief(Boolean.parseBoolean(stukjes.get(i)[2]));
+        }
+    }
+
+    public Gokstrategie[] getAlleGokstrategieën() {
+        return Gokstrategie.values();
     }
 
     public Speler getHuidigeSpeler() {
@@ -75,7 +95,6 @@ public class Gokspel implements Subject {
             throw new IllegalArgumentException("Kan nu niet inloggen.");
         }
     }
-
 
     public double getIngezetBedrag() {
         return ingezetBedrag;
@@ -109,11 +128,6 @@ public class Gokspel implements Subject {
         } else {
             throw new IllegalArgumentException("Kan nu geen geld inzetten.");
         }
-    }
-
-
-    public Gokstrategie[] getAlleGokstrategieën() {
-        return Gokstrategie.values();
     }
 
     /*public int werpDobbelsteen() {
@@ -193,8 +207,6 @@ public class Gokspel implements Subject {
         observers.remove(observer);
     }
 
-
-
     public void setState(State state) {
         this.currentState = state;
     }
@@ -218,8 +230,4 @@ public class Gokspel implements Subject {
     public State getEnded() {
         return ended;
     }
-
-
-
-
 }

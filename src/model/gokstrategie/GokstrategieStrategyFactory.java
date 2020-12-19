@@ -29,6 +29,9 @@ public class GokstrategieStrategyFactory {
             case "De som van de ogen van alle worpen samen is 21":
                 gekozenStrategie = "SomIs21";
                 break;
+            case "Je verliest altijd":
+                gekozenStrategie = "AltijdVerloren";
+                break;
             default:
                 System.out.println("manne de code is fout");
                 gekozenStrategie = "losers";

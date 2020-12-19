@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
+import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
 import view.GamblerView;
 import view.panels.instellingen.InstellingenMainPane;
@@ -37,6 +38,10 @@ public class InstellingenController implements Observer {
         return this.gokspel;
     }
 
+    public Gokstrategie[] getAlleGokstrategieën() {
+        return gokspel.getAlleGokstrategieën();
+    }
+
 
     private void setModel(Gokspel gokspel) {
         this.gokspel = gokspel;
@@ -50,13 +55,12 @@ public class InstellingenController implements Observer {
         return gokspel.checkBestaat(prop);
     }
 
-    public String loadProperty(String prop) {
-        return gokspel.loadProperty(prop);
-    }
-
     @Override
     public void updateReset() {
         // geen implementatie nodig
     }
 
+    public void pasAanEnum(String keuze) {
+        gokspel.pasAanEnum(keuze);
+    }
 }

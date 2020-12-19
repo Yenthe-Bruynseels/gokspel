@@ -1,11 +1,11 @@
 package model.gokstrategie;
 
-public class AltijdWinst implements GokstrategieStrategy {
-    private double winstfactor = 2.0;
+public class AltijdVerloren implements GokstrategieStrategy{
+    private double winstfactor = 100.0;
 
     @Override
     public boolean evalueerGok(int worp1) {
-        return true;
+        return false;
     }
 
     @Override
@@ -17,5 +17,4 @@ public class AltijdWinst implements GokstrategieStrategy {
     public void setWinstfactor(double winstfactor) {
         this.winstfactor = winstfactor;
     }
-
 }

@@ -251,6 +251,7 @@ public class GamblerMainPane extends GridPane {
                     gambie.vermeerderSaldo();
                     gambie.getModel().notifyObserversWorp(gewonnenText2);
                     gambie.getModel().notifyObserversWorp(new Button("Reset game"));
+                    gambie.getModel().notifyObserversWorp(new Button("End game session."));
                 }
             }
 

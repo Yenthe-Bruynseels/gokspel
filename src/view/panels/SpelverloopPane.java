@@ -1,12 +1,17 @@
 package view.panels;
 
 import controller.SpelverloopController;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Speler;
+
+import java.lang.management.PlatformLoggingMXBean;
 
 public class SpelverloopPane extends GridPane {
     private SpelverloopController spellopie;
@@ -53,14 +58,20 @@ public class SpelverloopPane extends GridPane {
 
     public void updateWorp(Node node) {
         worpenbox.getChildren().add(node);
-        //Werkt alleen op button, dus werkt alleen op de reset button
-        worpenbox.getChildren().get(worpenbox.getChildren().size()-1).setOnMouseClicked(event -> {
-            spellopie.getModel().notifyObserversReset();
-            spelernaamText.setText("");
-            saldoText.setText("");
-            gokstrategieText.setText("");
-            worpenbox.getChildren().clear();
-        });
+        if (worpenbox.getChildren().size() > 3) {
+            //Werkt alleen op button, dus werkt alleen op de reset button
+            worpenbox.getChildren().get(worpenbox.getChildren().size()-2).setOnMouseClicked(event -> {
+                spellopie.getModel().notifyObserversReset();
+                spelernaamText.setText("");
+                saldoText.setText("");
+                gokstrategieText.setText("");
+                worpenbox.getChildren().clear();
+            });
+            worpenbox.getChildren().get(worpenbox.getChildren().size()-1).setOnMouseClicked(event -> {
+                Platform.exit();
+            });
+        }
+
     }
 
 }

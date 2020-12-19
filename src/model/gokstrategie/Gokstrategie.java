@@ -10,26 +10,36 @@ public enum Gokstrategie {
     ALTIJDVERLOREN("Je verliest altijd", 100, true);
 
     private String volledigeUitleg;
-    private double rendement;
+    private double winstfactor;
+    private boolean actief;
 
     Gokstrategie(String volledigeUitleg, double winstfactor, boolean actief) {
         setVolledigeUitleg(volledigeUitleg);
-        setRendement(rendement);
+        setWinstfactor(winstfactor);
+        setActief(actief);
     }
 
     public void setVolledigeUitleg(String volledigeUitleg) {
         this.volledigeUitleg = volledigeUitleg;
     }
 
-    public void setRendement(double rendement) {
-        this.rendement = rendement;
+    public void setWinstfactor(double winstfactor) {
+        this.winstfactor= winstfactor;
     }
 
     public String getVolledigUitleg() {
         return volledigeUitleg;
     }
 
-    public double getRendement() {
-        return rendement;
+    public double getWinstfactor() {
+        return winstfactor;
+    }
+
+    public void setActief(boolean actief) {
+        this.actief = actief;
+    }
+
+    public boolean getActief() {
+        return this.actief;
     }
 }

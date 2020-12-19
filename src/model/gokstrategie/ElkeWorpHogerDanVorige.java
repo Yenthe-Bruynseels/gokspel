@@ -33,4 +33,8 @@ public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
     public double getWinstfactor() {
         return winstfactor;
     }
+
+    public void setWinstfactor(double winstfactor) {
+        this.winstfactor = winstfactor;
+    }
 }

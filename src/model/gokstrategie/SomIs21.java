@@ -44,5 +44,9 @@ public class SomIs21 implements GokstrategieStrategy{
         return this.winstfactor;
     }
 
+    public void setWinstfactor(double winstfactor) {
+        this.winstfactor = winstfactor;
+    }
+
 }
 

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
+import model.database.DbException;
 import model.database.PropertiesLoadSave;
 import model.database.SpelersDatabaseInMemory;
 import model.gokstrategie.Gokstrategie;

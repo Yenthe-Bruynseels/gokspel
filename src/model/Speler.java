@@ -69,7 +69,7 @@ public class Speler implements Comparable<Speler>{
     }
 
     public void vermeerderSaldo(double winstfactor, double ingezetBedrag) {
-        this.saldo =  this.saldo + (ingezetBedrag * winstfactor);
+        this.saldo =  (this.saldo - ingezetBedrag) + (ingezetBedrag * winstfactor);
     }
 
     public String toStringWithGivenSeperator(String seperator) {

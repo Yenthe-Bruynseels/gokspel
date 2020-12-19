@@ -18,7 +18,7 @@ public class GamblerMainPane extends GridPane {
     private Label spelernaamLabel, goksaldoLabel, kiesLabel, winstfactorLabel, verhoogLabel;
     private TextField spelernaamTextField, goksaldo, verhoogSaldo;
     private Button startGokspel, bevestigKeuze, werpDobbelsteen;
-    private Text saldoText;
+    private Text saldoText, nieuwSaldoText;
     private VBox gokstrategieënGroep, winstfactorGroep, worpenbox;
     private ToggleGroup toggleGroep;
     private int counter = 0;

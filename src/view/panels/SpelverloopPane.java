@@ -15,8 +15,9 @@ import java.lang.management.PlatformLoggingMXBean;
 
 public class SpelverloopPane extends GridPane {
     private SpelverloopController spellopie;
+    private int counter = 1;
 
-    private Text spelernaamText, saldoText, gokstrategieText;
+    private Text spelernaamText, saldoText, gokstrategieText, counterText;
     private VBox worpenbox;
 
 

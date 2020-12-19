@@ -5,9 +5,10 @@ import java.util.List;
 
 public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
     private List<Integer> worpen;
-    private double winstfactor = 10.0;
+    private double winstfactor;
 
     public ElkeWorpHogerDanVorige(){
+        this.winstfactor = setWinstfactor();
         worpen = new ArrayList<>();
         worpen.add(0);
         worpen.add(0);

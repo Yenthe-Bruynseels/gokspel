@@ -6,5 +6,7 @@ public interface GokstrategieStrategy {
 
     double getWinstfactor();
 
-    void setWinstfactor(double winstfactor);
+    default double setWinstfactor() {
+        return Gokstrategie.valueOf(this.getClass().getSimpleName().toUpperCase()).getWinstfactor();
+    }
 }

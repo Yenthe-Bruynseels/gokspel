@@ -82,7 +82,10 @@ public class GamblerMainPane extends GridPane {
         verhoogLabel = new Label("Inzet verhogen? 0 = Nee, 10 = Max, ENTER = OK");
         verhoogSaldo = new TextField();
 
-        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, winstfactorGroep, werpDobbelsteen, worpenbox);
+        nieuwSaldoText = new Text("");
+        setConstraints(nieuwSaldoText,0,6);
+
+        this.getChildren().addAll(spelernaamLabel, spelernaamTextField, goksaldoLabel, goksaldo, startGokspel, saldoText, gokstrategieënGroep, winstfactorGroep, werpDobbelsteen, worpenbox, nieuwSaldoText);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                  Events
@@ -114,6 +117,7 @@ public class GamblerMainPane extends GridPane {
         winstfactorGroep.setVisible(false);
         werpDobbelsteen.setVisible(false);
         worpenbox.setVisible(false);
+        nieuwSaldoText.setVisible(false);
     }
 
     private void inlogActivatie() {
@@ -210,6 +214,8 @@ public class GamblerMainPane extends GridPane {
                 //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
                 Text verlorenText2 = new Text(verlorenText.getText());
                 gambie.verminderSaldo();
+                nieuwSaldoText.setText("Je nieuwe saldo bedraagt " + gambie.getHuidigeSpeler().getSaldo());
+                nieuwSaldoText.setVisible(true);
                 gambie.getModel().notifyObserversWorp(verlorenText2);
                 gambie.getModel().notifyObserversWorp(new Button("Reset game"));
                 gambie.getModel().notifyObserversWorp(new Button("End game session."));
@@ -255,12 +261,13 @@ public class GamblerMainPane extends GridPane {
                     Text gewonnenText2 = new Text(gewonnenText.getText());
                     worpenbox.getChildren().add(gewonnenText);
                     gambie.vermeerderSaldo();
+                    nieuwSaldoText.setText("Je nieuwe saldo bedraagt " + gambie.getHuidigeSpeler().getSaldo());
+                    nieuwSaldoText.setVisible(true);
                     gambie.getModel().notifyObserversWorp(gewonnenText2);
                     gambie.getModel().notifyObserversWorp(new Button("Reset game"));
                     gambie.getModel().notifyObserversWorp(new Button("End game session."));
                 }
             }
-
         });
     }
 
@@ -273,7 +280,7 @@ public class GamblerMainPane extends GridPane {
         bevestigKeuze();
         counter = 0;
         goksaldo.setText("");
-
+        toggleGroep.getToggles().clear();
         gokstrategieënGroep.getChildren().clear();
         gokstrategieënGroep.getChildren().add(kiesLabel);
         for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
@@ -284,7 +291,6 @@ public class GamblerMainPane extends GridPane {
             }
         }
         gokstrategieënGroep.getChildren().add(bevestigKeuze);
-
         winstfactorGroep.getChildren().clear();
         winstfactorGroep.getChildren().add(winstfactorLabel);
         for (Gokstrategie gok : gambie.getAlleGokstrategieën()) {
@@ -293,9 +299,6 @@ public class GamblerMainPane extends GridPane {
                 winstfactorGroep.getChildren().add(text);
             }
         }
-
-
-
         worpenbox.getChildren().clear();
         toggleGroep.getToggles().get(0).setSelected(true);
         verhoogSaldo.clear();

@@ -103,9 +103,9 @@ public class Gokspel implements Subject {
 
 /*    public void verminderSaldo() {
         huidigeSpeler.verminderSaldo(this.ingezetBedrag);
-    }
+    }*/
 
-    public void vermeerderSaldo() {
+/*    public void vermeerderSaldo() {
         huidigeSpeler.vermeerderSaldo(gokstrategie.getWinstfactor(), this.ingezetBedrag);
     }*/
 

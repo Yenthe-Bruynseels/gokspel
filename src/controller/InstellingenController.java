@@ -38,6 +38,11 @@ public class InstellingenController implements Observer {
         return this.gokspel;
     }
 
+    @Override
+    public void updateReset() {
+        view.updateReset();
+    }
+
     public Gokstrategie[] getAlleGokstrategieën() {
         return gokspel.getAlleGokstrategieën();
     }
@@ -53,11 +58,6 @@ public class InstellingenController implements Observer {
 
     public boolean checkBestaat(String prop) {
         return gokspel.checkBestaat(prop);
-    }
-
-    @Override
-    public void updateReset() {
-        // geen implementatie nodig
     }
 
     public void pasAanEnum(String keuze) {

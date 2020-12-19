@@ -27,8 +27,8 @@ public class GokSpelMain extends Application {
 		SpelverloopController spellopie = new SpelverloopController(gokspel);
 		StatistiekenController statie = new StatistiekenController(gokspel);
 
-		gokspel.registerObserver(gambie);
 		gokspel.registerObserver(instie);
+		gokspel.registerObserver(gambie);
 		gokspel.registerObserver(spellie);
 		gokspel.registerObserver(spellopie);
 		gokspel.registerObserver(statie);

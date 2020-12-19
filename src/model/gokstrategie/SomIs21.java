@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SomIs21 implements GokstrategieStrategy{
-    private double winstfactor = 5.0;
+    private double winstfactor;
     private List<Integer> worpen = new ArrayList<>();
     private int som = 0;
 
+    public SomIs21() {
+        this.winstfactor = setWinstfactor();
+    }
 
     public boolean evalueerGok(int worp) {
         if (worpen.size() == 0) {

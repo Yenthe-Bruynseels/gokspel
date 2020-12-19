@@ -4,18 +4,14 @@ import controller.InstellingenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import model.Gokspel;
 import model.database.PropertiesLoadSave;
 import model.gokstrategie.Gokstrategie;
 
 public class InstellingenMainPane extends GridPane {
+    private String keuze = PropertiesLoadSave.load("GOKSTRATEGIEEN");
     private InstellingenController instie;
     private RadioButton file;
     private Label database = new Label("Database Instellingen:");
@@ -99,16 +95,24 @@ public class InstellingenMainPane extends GridPane {
         this.getChildren().addAll(gokstrategieënGroep, winstfactorGroep);
 
         slaOp.setOnMouseClicked(event -> {
-            String keuze = "";
+            resetKeuze();
             for (int i=1; i<winstfactorGroep.getChildren().size() ;i++) {
                 keuze += instie.getAlleGokstrategieën()[i-1] + "," + ((TextField) winstfactorGroep.getChildren().get(i)).getText() + "," + ((RadioButton) gokstrategieënGroep.getChildren().get(i)).isSelected() + ";";
             }
             PropertiesLoadSave.save(keuze,"GOKSTRATEGIEEN");
-            instie.pasAanEnum(keuze);
         });
     }
 
     private void setController(InstellingenController instie) {
         this.instie = instie;
+    }
+
+    private void resetKeuze() {
+        System.out.println(keuze);
+        this.keuze = "";
+    }
+
+    public void updateReset() {
+        instie.pasAanEnum(keuze);
     }
 }

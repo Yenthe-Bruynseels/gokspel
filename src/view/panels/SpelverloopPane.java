@@ -27,18 +27,21 @@ public class SpelverloopPane extends GridPane {
         this.setVgap(8);
         this.setHgap(10);
 
+
+        counterText = new Text("Dit is spel " + counter + " van de huidige sessie.");
+        setConstraints(counterText, 0,0);
         spelernaamText = new Text();
-        setConstraints(spelernaamText,0,0);
+        setConstraints(spelernaamText,0,1);
         saldoText = new Text();
-        setConstraints(saldoText,0,1);
+        setConstraints(saldoText,0,2);
         gokstrategieText = new Text();
-        setConstraints(gokstrategieText,0,2);
+        setConstraints(gokstrategieText,0,3);
 
         worpenbox = new VBox();
         worpenbox.setSpacing(4);
-        setConstraints(worpenbox,0,3);
+        setConstraints(worpenbox,0,4);
 
-        this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText, worpenbox);
+        this.getChildren().addAll(spelernaamText,saldoText, gokstrategieText, worpenbox, counterText);
 
     }
 
@@ -61,7 +64,9 @@ public class SpelverloopPane extends GridPane {
         if (worpenbox.getChildren().size() > 3) {
             //Werkt alleen op button, dus werkt alleen op de reset button
             worpenbox.getChildren().get(worpenbox.getChildren().size()-2).setOnMouseClicked(event -> {
+                counter++;
                 spellopie.getModel().notifyObserversReset();
+                counterText.setText("Dit is spel " + counter + " van de huidige sessie.");
                 spelernaamText.setText("");
                 saldoText.setText("");
                 gokstrategieText.setText("");
@@ -73,5 +78,6 @@ public class SpelverloopPane extends GridPane {
         }
 
     }
+
 
 }

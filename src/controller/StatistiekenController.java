@@ -1,12 +1,12 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 import model.observer.Observer;
 import view.StatistiekenPane;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class StatistiekenController implements Observer {
     private StatistiekenPane view;

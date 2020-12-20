@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Gokspel;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class AdminView {
 	private Stage stage = new Stage();		
 		

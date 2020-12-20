@@ -11,6 +11,8 @@ import javafx.scene.text.Text;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 
 public class GamblerMainPane extends GridPane {
     private GamblerViewController gambie;

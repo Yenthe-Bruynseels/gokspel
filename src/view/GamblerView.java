@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class GamblerView {
 	private Stage stage = new Stage();
 		

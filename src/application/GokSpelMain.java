@@ -4,15 +4,10 @@ import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Gokspel;
-import model.Speler;
-import model.database.SpelersDatabaseInMemory;
 import view.AdminView;
 import view.GamblerView;
-import view.panels.GamblerOverviewPane;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class GokSpelMain extends Application {
 

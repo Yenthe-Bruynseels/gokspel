@@ -7,6 +7,7 @@ import model.database.strategy.LoadSaveStrategy;
 import java.io.File;
 import java.util.*;
 
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class SpelersDatabaseInMemory {
     private LoadSaveStrategy loadSaveStrategy;

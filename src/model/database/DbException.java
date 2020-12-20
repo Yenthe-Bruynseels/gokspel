@@ -1,5 +1,7 @@
 package model.database;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class DbException extends RuntimeException {
 
     public DbException(){

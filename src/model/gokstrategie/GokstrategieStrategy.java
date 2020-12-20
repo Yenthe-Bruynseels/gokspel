@@ -1,5 +1,7 @@
 package model.gokstrategie;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public interface GokstrategieStrategy {
 
     boolean evalueerGok(int worp1);

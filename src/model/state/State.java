@@ -3,6 +3,8 @@ package model.state;
 import model.Dobbelsteen;
 import model.gokstrategie.GokstrategieStrategy;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public interface State {
 
     default int werpDobbelsteen(Dobbelsteen dobbie) {

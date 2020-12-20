@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.*;
 
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class Gokspel implements Subject {
     private State choose, play, wait, verhoogInzet, currentState, ended;

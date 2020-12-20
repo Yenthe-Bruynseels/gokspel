@@ -4,6 +4,8 @@ package model.observer;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public interface Subject {
     void notifyObservers();
     void notifyObserversGok(String gokstrategie);

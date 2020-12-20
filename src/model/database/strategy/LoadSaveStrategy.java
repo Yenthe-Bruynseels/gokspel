@@ -1,8 +1,8 @@
 package model.database.strategy;
 
-import java.io.File;
-import java.util.List;
 import java.util.Map;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public interface LoadSaveStrategy <K, V> {
     Map<K, V> load(String filename);

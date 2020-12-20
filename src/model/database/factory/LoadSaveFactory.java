@@ -3,6 +3,8 @@ package model.database.factory;
 import model.database.DbException;
 import model.database.strategy.LoadSaveStrategy;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class LoadSaveFactory {
     private static LoadSaveFactory uniqueFactory;
 

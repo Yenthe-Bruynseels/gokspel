@@ -3,6 +3,8 @@ package model.gokstrategie;
 import java.util.ArrayList;
 import java.util.List;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
     private List<Integer> worpen;
     private double winstfactor;

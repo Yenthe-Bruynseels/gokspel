@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class PropertiesLoadSave {
 
     //Returned de value van de property met waarde 'property'

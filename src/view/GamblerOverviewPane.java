@@ -1,5 +1,4 @@
-package view.panels;
-
+package view;
 
 import controller.SpelersController;
 import javafx.collections.FXCollections;
@@ -16,6 +15,7 @@ import model.database.SpelersDatabaseInMemory;
 
 import java.util.List;
 
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class GamblerOverviewPane extends GridPane {
     private TableView<Speler> table;

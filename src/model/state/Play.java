@@ -4,6 +4,8 @@ import model.Dobbelsteen;
 import model.Gokspel;
 import model.gokstrategie.GokstrategieStrategy;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class Play implements State {
     private Gokspel gokspel;
 

@@ -1,5 +1,7 @@
 package model.gokstrategie;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class AltijdVerloren implements GokstrategieStrategy{
     private double winstfactor;
 

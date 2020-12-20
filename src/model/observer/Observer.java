@@ -6,6 +6,8 @@ import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public interface Observer {
     void update(Speler speler, double inzet);
     void updateGok(String gokstrategie);

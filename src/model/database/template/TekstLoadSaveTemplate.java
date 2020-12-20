@@ -1,4 +1,5 @@
 package model.database.template;
+
 import model.DomainException;
 import model.database.strategy.LoadSaveStrategy;
 
@@ -6,6 +7,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
 

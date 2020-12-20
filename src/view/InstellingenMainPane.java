@@ -1,4 +1,4 @@
-package view.panels;
+package view;
 
 import controller.InstellingenController;
 import javafx.collections.FXCollections;
@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.database.PropertiesLoadSave;
 import model.gokstrategie.Gokstrategie;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class InstellingenMainPane extends GridPane {
     private String keuze = PropertiesLoadSave.load("GOKSTRATEGIEEN");

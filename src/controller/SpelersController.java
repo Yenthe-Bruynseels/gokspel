@@ -2,12 +2,12 @@ package controller;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 import model.observer.Observer;
-import view.GamblerView;
-import view.panels.GamblerOverviewPane;
+import view.GamblerOverviewPane;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class SpelersController implements Observer {
     private Gokspel gokspel;

@@ -5,7 +5,9 @@ import model.Gokspel;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
-import view.panels.InstellingenMainPane;
+import view.InstellingenMainPane;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class InstellingenController implements Observer {
     private InstellingenMainPane view;

@@ -1,6 +1,6 @@
 package model.gokstrategie;
 
-import java.util.List;
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public enum Gokstrategie {
     ELKEWORPEVEN("Het aantal ogen is bij elke worp een even getal", 4, true),

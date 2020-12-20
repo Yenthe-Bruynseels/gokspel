@@ -1,14 +1,9 @@
 package model.database;
 
-import model.DomainException;
 import model.Speler;
 import model.database.template.TekstLoadSaveTemplate;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class SpelerTekstLoadSave extends TekstLoadSaveTemplate {
 

@@ -1,12 +1,12 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import model.Speler;
 import model.observer.Observer;
 import model.Gokspel;
-import view.panels.SpelverloopPane;
+import view.SpelverloopPane;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class SpelverloopController implements Observer {
     private Gokspel gokspel;

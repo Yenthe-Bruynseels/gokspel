@@ -2,6 +2,8 @@ package model.state;
 
 import model.Gokspel;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class Choose implements State{
     private Gokspel gokspel;
 

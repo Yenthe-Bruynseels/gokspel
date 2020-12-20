@@ -1,6 +1,5 @@
 package view;
 
-
 import controller.InstellingenController;
 import controller.SpelersController;
 import controller.SpelverloopController;
@@ -8,9 +7,8 @@ import controller.StatistiekenController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import view.panels.GamblerOverviewPane;
-import view.panels.SpelverloopPane;
-import view.panels.InstellingenMainPane;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class AdminMainPane extends BorderPane {
 

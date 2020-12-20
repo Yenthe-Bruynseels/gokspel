@@ -1,18 +1,13 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
-import model.state.State;
 import view.GamblerMainPane;
-import view.GamblerView;
 
-import java.util.List;
-
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class GamblerViewController implements Observer {
     private GamblerMainPane view;

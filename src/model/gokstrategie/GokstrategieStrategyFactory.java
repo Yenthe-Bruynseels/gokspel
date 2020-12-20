@@ -2,6 +2,8 @@ package model.gokstrategie;
 
 import model.database.DbException;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class GokstrategieStrategyFactory {
     private static GokstrategieStrategyFactory uniqueFactory;
 

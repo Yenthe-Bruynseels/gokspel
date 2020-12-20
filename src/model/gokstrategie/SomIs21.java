@@ -3,6 +3,8 @@ package model.gokstrategie;
 import java.util.ArrayList;
 import java.util.List;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class SomIs21 implements GokstrategieStrategy{
     private double winstfactor;
     private List<Integer> worpen = new ArrayList<>();

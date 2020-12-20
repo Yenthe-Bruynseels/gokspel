@@ -1,5 +1,7 @@
 package model;
 
+/** @Authors Yenthe, Cisse, Lennert*/
+
 public class Dobbelsteen {
 
 

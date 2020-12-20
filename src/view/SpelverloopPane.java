@@ -1,4 +1,4 @@
-package view.panels;
+package view;
 
 import controller.SpelverloopController;
 import javafx.application.Platform;
@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import model.Speler;
 
 import java.lang.management.PlatformLoggingMXBean;
+
+/** @Authors Yenthe, Cisse, Lennert*/
 
 public class SpelverloopPane extends GridPane {
     private SpelverloopController spellopie;

@@ -150,6 +150,13 @@ public class GamblerMainPane extends GridPane {
             if (event.getCode() == KeyCode.ENTER) {
                 double maxSaldo = gambie.getHuidigeSpeler().getSaldo();
                 double ingezetBedrag = Double.parseDouble(goksaldo.getText());
+                if  (ingezetBedrag <= 0) {
+                    Alert teLaag = new Alert(Alert.AlertType.ERROR);
+                    teLaag.setTitle("Inzet te laag");
+                    teLaag.setHeaderText("Inzet te laag");
+                    teLaag.setContentText("Het ingezette bedrag moet groter dan 0 zijn.");
+                    teLaag.showAndWait();
+                }
                 if (maxSaldo < ingezetBedrag) {
                     Alert saldoOntoereikend = new Alert(Alert.AlertType.ERROR);
                     saldoOntoereikend.setTitle("Saldo ontoereikend");
@@ -208,12 +215,12 @@ public class GamblerMainPane extends GridPane {
 
             if (!kanWinnen) {
                 werpDobbelsteen.setOnMouseClicked(null);
-                System.out.println("haha loser");
                 Text verlorenText = new Text("Je hebt verloren");
                 worpenbox.getChildren().add(verlorenText);
                 //Om de een of andere reden, mag je de Text niet rechtstreeks doorgeven. Dan update hij alleen in het spelverlooptab, vandaar wordt een 2e versie aangemaakt
                 Text verlorenText2 = new Text(verlorenText.getText());
                 gambie.verminderSaldo();
+                gambie.saveAll();
                 nieuwSaldoText.setText("Je nieuwe saldo bedraagt " + gambie.getHuidigeSpeler().getSaldo());
                 nieuwSaldoText.setVisible(true);
                 gambie.getModel().notifyObserversWorp(verlorenText2);
@@ -261,6 +268,7 @@ public class GamblerMainPane extends GridPane {
                     Text gewonnenText2 = new Text(gewonnenText.getText());
                     worpenbox.getChildren().add(gewonnenText);
                     gambie.vermeerderSaldo();
+                    gambie.saveAll();
                     nieuwSaldoText.setText("Je nieuwe saldo bedraagt " + gambie.getHuidigeSpeler().getSaldo());
                     nieuwSaldoText.setVisible(true);
                     gambie.getModel().notifyObserversWorp(gewonnenText2);

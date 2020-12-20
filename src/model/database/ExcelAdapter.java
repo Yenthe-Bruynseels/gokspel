@@ -2,6 +2,8 @@ package model.database;
 
 import excel.ExcelPlugin;
 import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import model.Speler;
 import model.database.strategy.LoadSaveStrategy;
 
@@ -40,8 +42,18 @@ public class ExcelAdapter implements LoadSaveStrategy {
     }
 
     @Override
-    public void save(String filename, List spelers) {
-        // Later.
+    public void save(String filename, Map mappie) {
+        try{
+            ArrayList<ArrayList<String>> args = new ArrayList();
+            for (Object speler : mappie.values()) {
+                args.add( ((Speler)(speler)).lijstSpeler());
+            }
+
+            excelPlugin.write(convertToFile(filename), args);
+
+        } catch (IOException | BiffException | WriteException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     private File convertToFile (String filename) {

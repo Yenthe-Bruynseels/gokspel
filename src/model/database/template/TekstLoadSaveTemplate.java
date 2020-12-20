@@ -1,11 +1,9 @@
 package model.database.template;
 import model.DomainException;
-import model.Speler;
 import model.database.strategy.LoadSaveStrategy;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -22,8 +20,8 @@ public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
             while (scannerFile.hasNextLine()) {
                 String s = scannerFile.nextLine();
                 String[] parts = s.split(getSeperator());
-                V element = maakObject(parts);
                 K key = getKey(parts);
+                V element = maakObject(parts);
 
                 returnMap.put(key,element);
             }
@@ -34,12 +32,11 @@ public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
     }
 
     @Override
-    public final void save(String filename, List valuelist) {
-        File spelersInFile = new File(filename);
+    public final void save(String filename, Map mappie) {
         try {
-            PrintWriter writer = new PrintWriter(spelersInFile);
+            PrintWriter writer = new PrintWriter("src/bestanden/" + filename);
 
-            for(Object value: valuelist){
+            for(Object value: mappie.values()){
                 writer.println(makeStringFromValue(value));
             }
             writer.close();
@@ -54,9 +51,5 @@ public abstract class TekstLoadSaveTemplate <K,V> implements LoadSaveStrategy {
     protected abstract K getKey(String[] parts);
 
     protected abstract String makeStringFromValue(Object value);
-
-    /*private File convertToFile (String filename) {
-        return new File("src/bestanden/" + filename);
-    }*/
 
 }

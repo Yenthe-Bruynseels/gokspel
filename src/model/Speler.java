@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Speler implements Comparable<Speler>{
@@ -61,6 +63,15 @@ public class Speler implements Comparable<Speler>{
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public ArrayList<String> lijstSpeler() {
+        ArrayList<String> lijst = new ArrayList<>();
+        lijst.add(this.achternaam);
+        lijst.add(this.voornaam);
+        lijst.add(this.spelernaam);
+        lijst.add(Double.toString(this.saldo));
+        return lijst;
     }
 
     public void verminderSaldo(double ingezetBedrag) {

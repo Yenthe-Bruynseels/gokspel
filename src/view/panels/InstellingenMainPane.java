@@ -1,4 +1,4 @@
-package view.panels.instellingen;
+package view.panels;
 
 import controller.InstellingenController;
 import javafx.collections.FXCollections;

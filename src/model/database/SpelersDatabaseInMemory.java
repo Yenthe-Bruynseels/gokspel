@@ -28,7 +28,7 @@ public class SpelersDatabaseInMemory {
     }
 
     public void saveAll(String filename, Map<String, Speler> spelers) {
-        //
+        loadSaveStrategy.save(filename, spelers);
     }
 
 }

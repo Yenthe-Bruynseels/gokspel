@@ -8,11 +8,9 @@ import controller.StatistiekenController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import model.database.SpelersDatabaseInMemory;
 import view.panels.GamblerOverviewPane;
-import model.Gokspel;
 import view.panels.SpelverloopPane;
-import view.panels.instellingen.InstellingenMainPane;
+import view.panels.InstellingenMainPane;
 
 public class AdminMainPane extends BorderPane {
 

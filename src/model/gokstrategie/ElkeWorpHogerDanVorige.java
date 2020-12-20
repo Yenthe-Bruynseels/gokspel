@@ -10,10 +10,7 @@ public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
     public ElkeWorpHogerDanVorige(){
         this.winstfactor = setWinstfactor();
         worpen = new ArrayList<>();
-        worpen.add(0);
-        worpen.add(0);
-        worpen.add(0);
-        worpen.add(0);
+
     }
 
     public boolean evalueerGok(int worp){
@@ -24,10 +21,19 @@ public class ElkeWorpHogerDanVorige implements GokstrategieStrategy{
         }
         worpen.add(worp);
 
-        if (worpen.get(0) > 3 || worpen.get(1) > 4 || worpen.get(2) > 5) {
-            return false;
+        if (worpen.size() == 1) {
+            return !(worpen.get(0) > 3);
         }
-        return true;
+        else if (worpen.size() == 2) {
+            return !(worpen.get(1) > 4);
+        }
+        else if (worpen.size() == 3) {
+            return !(worpen.get(2) > 5);
+        }
+
+        else{
+            return true;
+        }
     }
 
     @Override

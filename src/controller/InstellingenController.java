@@ -1,14 +1,11 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
 import model.Gokspel;
 import model.Speler;
 import model.gokstrategie.Gokstrategie;
 import model.observer.Observer;
-import view.GamblerView;
-import view.panels.instellingen.InstellingenMainPane;
+import view.panels.InstellingenMainPane;
 
 public class InstellingenController implements Observer {
     private InstellingenMainPane view;

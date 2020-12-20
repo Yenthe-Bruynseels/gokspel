@@ -109,4 +109,7 @@ public class GamblerViewController implements Observer {
     }
 
 
+    public void saveAll() {
+        gokspel.saveAll();
+    }
 }

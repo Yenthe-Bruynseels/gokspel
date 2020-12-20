@@ -60,6 +60,10 @@ public class Gokspel implements Subject {
         return FXCollections.observableArrayList(getSpelers().values());
     }
 
+    public void saveAll() {
+        db.saveAll("speler." + PropertiesLoadSave.load("DATABASE"), spelers);
+    }
+
     public boolean checkBestaat(String prop) {
         return PropertiesLoadSave.propertyBestaat(prop);
     }
@@ -75,7 +79,7 @@ public class Gokspel implements Subject {
         for (String strings : gokspelStrategie) {
             stukjes.add(strings.split(","));
         }
-        for (int i = 0; i< getAlleGokstrategieën().length; i++) {
+        for (int i = 0; i < getAlleGokstrategieën().length; i++) {
             getAlleGokstrategieën()[i].setWinstfactor(Double.parseDouble(stukjes.get(i)[1]));
             getAlleGokstrategieën()[i].setActief(Boolean.parseBoolean(stukjes.get(i)[2]));
         }
@@ -122,7 +126,9 @@ public class Gokspel implements Subject {
 
     public void setIngezetBedrag(double ingezetBedrag) {
         if (currentState == wait) {
-            this.ingezetBedrag = ingezetBedrag;
+            if (ingezetBedrag > 0) {
+                this.ingezetBedrag = ingezetBedrag;
+            } else throw new IllegalArgumentException("Ingezet bedrag moet groter zijn dan 0");
         } else if (currentState == verhoogInzet) {
             this.ingezetBedrag += ingezetBedrag;
             verhoogInzet();
